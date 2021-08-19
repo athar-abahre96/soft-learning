@@ -1,0 +1,6 @@
+﻿The initial name of java was “Oak”. It was changed to Java by Sun’s marketing department changed it to “java” when they found that name was already registered for some computer company.
+A function is the minimum requirement for a C++ program to run.
+As a high-level and interpreted language, Python does not need a compiler. This is unlike Java and C++ which have to be compiled first before being interpreted. For Python, it relies on an application known as an interpreter.
+Java is the second most popular language and is very popular among the developers.
+Many programming languages are influenced by c++, some of which include C#, Java and even newer versions of C.
+Despite the massive popularity that enjoys, Python is an open source language. This means that it has all the features of an open source language. It does not have a proprietary license that controls who uses it.\nAs an open source language, members of the Python community are allowed to make their contributions into the Python ecosystem.

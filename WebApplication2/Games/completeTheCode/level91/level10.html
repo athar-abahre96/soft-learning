@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css">
+    <audio id="clip1">
+        <source src="../clap.wav"></source>
+    </audio>
+    <audio id="clip2">
+        <source src="../aww.wav"></source>
+    </audio>
+
+    <title>Fill In The Blanks</title>
+</head>
+<body>
+
+    <h1>Fill In The Blanks</h1>
+
+    <div class="position001">
+        <div id="board001">
+            <img src="../level10.png" height="567" width="716" />
+        </div>
+    </div>
+
+    <h3 id="output">output: After loop</h3>
+
+
+    <form id="quiz" name="quiz">
+
+        <input id="textbox1" type="text" name="question1" autocomplete="off">
+        <input id="textbox2" type="text" name="question2" autocomplete="off">
+        <input id="textbox3" type="text" name="question3" autocomplete="off">
+
+        <button id="button2" type="button" value="I'm finished!" onclick="check();">finished!</button>
+
+        <div id="after_submit">
+            <p id="number_correct"></p>
+            <p id="message"></p>
+            <img id="picture">
+        </div>
+    </form>
+    <script>
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+
+        function repeat001() {
+            location.reload();
+        }
+
+        function check() {
+
+            let clapAudio = document.getElementById("clip1");
+            let awwAudio = document.getElementById("clip2");
+
+            var finish = false;
+            var numQuestions = 3;
+            var question1 = document.quiz.question1.value;
+            var question2 = document.quiz.question2.value;
+            var question3 = document.quiz.question3.value;
+            //var question5 = document.quiz.question5.value;
+            var correct = 0;
+            if (question1 === "printf") {
+                correct++;
+                document.quiz.question1.style.display = 'none';
+                document.getElementById("quiz").innerHTML += '<img src="../v.png" id="x1" />'
+            }
+            else {
+                //document.quiz.question1.style.display = 'none';
+                document.getElementById("quiz").innerHTML += '<img src="../x3.png" id="x1" />'
+            }
+
+            if (question2 === 'break;') {
+                correct++;
+                document.quiz.question2.style.display = 'none';
+                document.getElementById("quiz").innerHTML += '<img src="../v.png" id="x2" />'
+            }
+            else {
+                //document.quiz.question2.style.display = 'none';
+                document.getElementById("quiz").innerHTML += '<img src="../x3.png" id="x2" />'
+            }
+
+            if (question3 === "i++;") {
+                correct++;
+                document.quiz.question3.style.display = 'none';
+                document.getElementById("quiz").innerHTML += '<img src="../v.png" id="x3" />'
+            }
+            else {
+                //document.quiz.question3.style.display = 'none';
+                document.getElementById("quiz").innerHTML += '<img src="../x3.png" id="x3" />'
+            }
+            // if (question5 === "All") {
+            //    correct++;
+            // }
+
+            var pictures = ["img/win.gif", "img/meh.jpeg", "img/lose.gif"];
+            var messages = ["Great job!", "That's just okay", "You really need to do better"];
+            var score;
+
+            if (correct === 0) {
+                score = 2;
+            }
+
+            if (correct > 0 && correct < 4) {
+                score = 1;
+            }
+
+            if (correct === 4) {
+                score = 0;
+            }
+            finish = true;
+            document.getElementById("output").innerHTML += "</br>" + "You got " + correct + " / " + numQuestions + " correct.";
+            if (correct < numQuestions) {
+                awwAudio.play();
+                document.getElementById("output").innerHTML += '<button class="button" type="submit" id="button" onclick="repeat001()">Try again!</button>'
+            }
+            else {
+                clapAudio.play();
+                document.getElementById("output").innerHTML += '<button class="button" type="submit" id="button" onclick="nextLevel()">Next Level</button>'
+            }
+            document.getElementById("button2").style.visibility = "hidden";
+
+        }
+
+        function nextLevel() {
+
+            window.location = "../level92/level11.html";
+        }
+    </script>
+
+</body>
+</html>

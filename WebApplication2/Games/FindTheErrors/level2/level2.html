@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style2.css">
+    <audio id="clip1">
+        <source src="../correct.mp3"></source>
+    </audio>
+    <audio id="clip2">
+        <source src="../error.wav"></source>
+    </audio>
+    <title>Find The Errors</title>
+</head>
+<body>
+
+    <h1 id="title">Find The Errors In The Code</h1>
+    <h2 id="title">
+        Items: <text id="score001">0</text><br />
+        Attempts: <text id="attempts001">3</text>
+    </h2>
+    <div class="position001">
+        <div id="board001">
+            <button class="hide001" onclick="incorrect001()">
+                <img src="../Capture2.PNG" height="455" width="477" />
+            </button>
+            <div class="block001">
+                <div id="disappear001">
+                    <button class="button001" onclick="correct001()"></button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <p id="message001"></p>
+    <p id="message002"></p>
+
+
+    <script src="level2.js"></script>
+
+</body>
+</html>

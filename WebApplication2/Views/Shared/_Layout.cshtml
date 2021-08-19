@@ -1,0 +1,49 @@
+﻿@model WebApplication2.Models.Player
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Soft Landing</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/nav.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+</head>
+<body>
+    @{ 
+        if (Model.UserName != null)
+        {
+            <div id='cssmenu'>
+                <ul>
+                    <li class='active'><a href='~/First/Menu'>Menu</a></li>
+                    <li><a href='~/First/Contact'>Contact</a></li>
+                    <li style="float:right">
+                        <a href='~/First/LogOut'>Log Out</a>
+                    </li>
+                    <li style="float:right; background-color: darkgray;">
+                        <a href='~/First/Settings'>@Model.UserName</a>
+                    </li>
+  
+                </ul>
+            </div>
+        }
+        if (Model.UserName == null)
+        {
+            <div id='cssmenu'>
+                <ul>
+                    <li class='active'><a href='~/First/Menu'>Menu</a></li>
+                    <li><a href='~/First/Login'>Login</a></li>
+                    <li><a href='~/First/Contact'>Contact</a></li>
+                </ul>
+            </div>
+        }
+
+    }
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+﻿
+
+ *{
+           /* outline: 1px dotted purple;*/
+        }
+#world {
+	text-align:center;
+	margin-top:100px;
+}
+
+.pacman {
+    height: 50px;
+    width: 50px;
+    background-image: url(pacman.png);
+    display: inline-block;
+}
+
+.ghost1 {
+    height: 50px;
+    width: 50px;
+    background-image: url(ghost1.png);
+    display: inline-block;
+}
+
+
+.wall {
+    height: 50px;
+    width: 50px;
+    background-image: url(wall.png);
+    display: inline-block;
+}
+
+.coin {
+    height: 50px;
+    width: 50px;
+    background-image: url(coin.png);
+    display: inline-block;
+}
+
+.ground {
+    height: 50px;
+    width: 50px;
+    background-image: url(bg.png);
+    display: inline-block;
+}
+
+#score {
+    color: palevioletred;
+    font-size: 60px;
+    margin: 5px;
+    text-align: center;
+    top: 10%;
+    left: 39%;
+}
+
+ div {
+
+     /*line-height: 0px;*/
+     margin: -2px;
+     vertical-align: top;
+ }
+ 
+ #enterCode {
+	position: absolute;
+	top: 15%;
+	left: 73%;
+	font-size:25px;
+}
+#doneButton {
+	position: absolute;
+	background: gold;
+	color: white;
+	top: 93%;
+	left: 79%;
+	width: 200px;
+	opacity:0.9;
+	display:none;
+}
+#doneButton:hover {
+	border: 3px solid blue;
+	cursor: pointer;
+	opacity:1;
+}
+textarea {
+	background-color:rgba(0, 0, 0, 0.4);
+	position: absolute;
+	top: 44%;
+	left: 85%;
+	margin:0;
+	color: white;
+	font-family: 'Gloria Hallelujah';
+	font-size: 20px;
+	padding: 10px;
+	width:0px;
+	height: 0px;
+	border: 3px dashed white;
+}
+.delay {
+	display:none;
+}
+
+
+/*
+ * Styles for congratulations modal
+ */
+
+
+.overlay {
+    position: fixed;
+    bottom: 16%;
+    left: 0;
+    right: 0;
+    transition: opacity 500ms;
+}
+
+    .overlay:target {
+        visibility: visible;
+        opacity: 1;
+    }
+
+.popup {
+    margin: 120px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 5px;
+    width: 85%;
+    position: relative;
+    transition: all 5s ease-in-out;
+    font-family: 'Gloria Hallelujah', cursive;
+    background-color: gray;
+}
+
+    .popup h2 {
+        margin-top: 0;
+        color: white;
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 58px;
+    }
+
+    .popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+    }
+
+        .popup .close:hover {
+            color: #E5F720;
+        }
+
+    .popup .content-1,
+    .content-2 {
+        max-height: 30%;
+        overflow: auto;
+        text-align: center;
+        font-size: 52px;
+        color: lightgrey;
+    }
+
+.show {
+    visibility: visible !important;
+    opacity: 100 !important;
+}
+
+#starRating li {
+    display: inline-block;
+}
+
+#play-again {
+    background-color: #141214;
+    padding: 0.7rem 1rem;
+    font-size: 1.1rem;
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    font-family: 'Gloria Hallelujah', cursive;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+/* animations */
+@keyframes flipInY {
+    from {
+        transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+        animation-timing-function: ease-in;
+        opacity: 0;
+    }
+
+    40% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+        animation-timing-function: ease-in;
+    }
+
+    60% {
+        transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+        opacity: 1;
+    }
+
+    80% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    }
+
+    to {
+        transform: perspective(400px);
+    }
+}
+
+@keyframes rubberBand {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        transform: scale3d(.95, 1.05, 1);
+    }
+
+    75% {
+        transform: scale3d(1.05, .95, 1);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        transform: scale3d(1.2, 1.2, 1.2);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+
+/****** Media queries
+***************************/
+
+
+@media (max-width: 320px) {
+    .deck {
+        width: 85%;
+    }
+
+        .deck .card {
+            height: 4.7rem;
+            width: 4.7rem;
+        }
+}
+
+
+/* For Tablets and larger screens
+****************/
+
+@media (min-width: 768px) {
+    .container {
+        font-size: 22px;
+    }
+
+    .deck {
+        width: 660px;
+        height: 680px;
+    }
+
+        .deck .card {
+            height: 125px;
+            width: 125px;
+        }
+
+    .popup {
+        width: 50%;
+    }
+}

@@ -1,0 +1,41 @@
+int main() {
+    createHero(534,648);
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 6; j++) {
+            createInv(400 + j*100,100+i*75);
+        }
+    }
+    return 0;
+}
+
+
+
+void moveHero(int dist) {
+    hero.x += dist;
+}
+
+bool isAlienAhead(invaders[] , hero) {
+    int size = invaders.length;
+    int i;  // <-- loop variable!
+    for (i = 0; i < size; i++) {
+        if (invaders[i].x == hero.x) {
+		return true;
+	}
+    }
+    return false;
+}
+
+
+
+
+
+int main() {
+    while(areThereEnemies()){
+    	moveHero(1);
+    	if (isAlienAhead()) {
+    	    heroShoot();
+	    heroShoot();
+    	}
+    }
+    return 0;
+}

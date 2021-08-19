@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Space Invaders</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts/jquery-2.0.3.min.js"></script>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+    <div id="background">        
+        <div id="hero"></div>
+        <div id="enemies"></div>
+        <div id="missiles"></div>
+    </div>
+	<span class="delay" style="{top:-200;}"></span>
+    <h3 id="score">0</h3>
+    <form action="" method="POST">
+		</br><span id="enterCode">enter code: </span></br><textarea id="solution"></textarea>
+	</form>
+	<button id="doneButton" onClick="Switch()"> Done </button>
+	<textarea style="left:15%; font-size:17px;" id="operations" readonly></textarea>
+    <script src="scripts/index.js"></script>
+</body>
+</html>

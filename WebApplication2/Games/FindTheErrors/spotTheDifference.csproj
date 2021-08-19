@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8CF1E13E-5313-4533-BD50-5D79F1A3ACAA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>spotTheDifference</RootNamespace>
+    <AssemblyName>spotTheDifference</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="1_SKIAmwDYVnrMvFOopOCwPQ.png" />
+    <Content Include="beige-tiles.png" />
+    <Content Include="Capture.PNG" />
+    <Content Include="Capture2.PNG" />
+    <Content Include="Capture3.PNG" />
+    <Content Include="Capture4.PNG" />
+    <Content Include="Capture5.PNG" />
+    <Content Include="Capture6.PNG" />
+    <Content Include="level003\level003.html" />
+    <Content Include="level003\level003Js.js" />
+    <Content Include="level003\style5.css" />
+    <Content Include="level08\level08.html" />
+    <Content Include="level08\level08Js.js" />
+    <Content Include="level08\style5.css" />
+    <Content Include="level091\level091.html" />
+    <Content Include="level091\level091Js.js" />
+    <Content Include="level091\style5.css" />
+    <Content Include="level092\level092.html" />
+    <Content Include="level092\level092Js.js" />
+    <Content Include="level092\style5.css" />
+    <Content Include="level093\level093.html" />
+    <Content Include="level093\level093Js.js" />
+    <Content Include="level093\style5.css" />
+    <Content Include="level094\level094.html" />
+    <Content Include="level094\level094Js.js" />
+    <Content Include="level094\style5.css" />
+    <Content Include="level095\level095.html" />
+    <Content Include="level095\level095Js.js" />
+    <Content Include="level095\style5.css" />
+    <Content Include="level09\level09.html" />
+    <Content Include="level09\level09Js.js" />
+    <Content Include="level09\style5.css" />
+    <Content Include="level9\level9.html" />
+    <Content Include="level9\level9Js.js" />
+    <Content Include="level9\style.css" />
+    <Content Include="level02\level02.html" />
+    <Content Include="level02\level02Js.js" />
+    <Content Include="level02\style5.css" />
+    <Content Include="level03\level03.html" />
+    <Content Include="level03\level03Js.js" />
+    <Content Include="level03\style5.css" />
+    <Content Include="level04\level04.html" />
+    <Content Include="level04\level04Js.js" />
+    <Content Include="level04\style5.css" />
+    <Content Include="level002\level002.html" />
+    <Content Include="level002\level002Js.js" />
+    <Content Include="level002\style5.css" />
+    <Content Include="level06\level06.html" />
+    <Content Include="level06\level06Js.js" />
+    <Content Include="level06\style5.css" />
+    <Content Include="level07\level07.html" />
+    <Content Include="level07\level07Js.js" />
+    <Content Include="level07\style5.css" />
+    <Content Include="level001\level001.html" />
+    <Content Include="level001\level001Js.js" />
+    <Content Include="level001\style5.css" />
+    <Content Include="level004\level004.html" />
+    <Content Include="level004\level004Js.js" />
+    <Content Include="level004\style5.css" />
+    <Content Include="level2\level2.html" />
+    <Content Include="level2\level2.js" />
+    <Content Include="level3\level3.html" />
+    <Content Include="level3\level3Js.js" />
+    <Content Include="level3\style3.css" />
+    <Content Include="level4\level4.html" />
+    <Content Include="level4\level4Js.js" />
+    <Content Include="level4\style4.css" />
+    <Content Include="level5\level5.html" />
+    <Content Include="level5\level5Js.js" />
+    <Content Include="level5\style5.css" />
+    <Content Include="level6\level6.html" />
+    <Content Include="level6\level6Js.js" />
+    <Content Include="level6\style5.css" />
+    <Content Include="level7\level7.html" />
+    <Content Include="level7\level7Js.js" />
+    <Content Include="level7\style5.css" />
+    <Content Include="level8\level8.html" />
+    <Content Include="level8\level8Js.js" />
+    <Content Include="level8\style5.css" />
+    <Content Include="memphis-mini-dark\connectwork.png" />
+    <Content Include="memphis-mini-dark\leaves-pattern.png" />
+    <Content Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="level2\style2.css" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50764</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50764/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

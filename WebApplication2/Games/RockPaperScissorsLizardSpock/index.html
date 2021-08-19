@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="assets/css/main.min.css" />
+	<script src="jquery-2.0.3.min.js"></script>
+</head>
+<body>
+    <div class="game">
+        <h1>Rock, Paper, Scissors, Lizard, Spock</h1><span class ="delay"></span>
+        <h2>
+            Scores: (Player / AI) <br />
+        </h2>
+        <h2>
+            <span id="score"></span> / <span id="aiScore"></span>
+        </h2>
+
+        <div class="options">
+            <div class="option rock" data-choice='"rock"'></div>
+            <div class="option paper" data-choice='"paper"'></div>
+            <div class="option scissors" data-choice='"scissors"'></div>
+            <div class="option lizard" data-choice='"lizard"'></div>
+            <div class="option spock" data-choice='"spock"'></div>
+        </div>
+        <div class="battle" id="battle">
+            <h3>AI CHOICE</h3>
+        </div>
+		<button class="reset hide" id="reset">Reset</button>
+		<form action="" method="POST">
+			</br><span id="enterCode">enter code: </span></br><textarea id="solution" rows="18" cols="30"></textarea>
+		</form>
+		<button id="doneButton" onClick="Switch()"> Done </button>
+		<textarea style="left:2%; font-size:17px;text-align:center;" id="operations" rows="18" cols="33" readonly></textarea>
+		<a style=" font-size:17px;text-align:center;" href="FIUAIWEI7Q0TCUT.LARGE.jpg" target="_blank">RULES</a>
+    </div>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>

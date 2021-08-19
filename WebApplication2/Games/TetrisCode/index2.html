@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+    <title>TETRIS</title>
+
+    <style>
+        body {
+            background: #202028;
+            color: white;
+            font-family: sans-serif;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: solid 15px white;
+            height: 85vh;
+        }
+
+        textarea {
+            background: #202028;
+            position: absolute;
+			outline-width:0;
+            top: 20%;
+            left: 67%;
+            color: white;
+            font-family: New-Times-Roman;
+            font-size: 20px;
+            padding: 30px;
+			padding-top:5px;
+			padding-bottom:0px;
+            height: 15vh;
+            border: 3px dashed white;
+        }
+
+        .exp {
+            top: 20%;
+            left: 5%;
+            background: #202028;
+            position: absolute;
+            color: white;
+            font-family: FreeMono, monospace;
+            font-size: 20px;
+            padding: 10px;
+            height: 65vh;
+            border: 3px dashed white;
+        }
+
+        #enterCode {
+            position: absolute;
+            top: 15%;
+            left: 67%;
+        }
+
+        #doneButton {
+            position: absolute;
+            background: #202028;
+            color: white;
+            hover: background:white;
+            top: 95%;
+            left: 75%;	
+            width: 200px;
+            transition-duration: .5s;
+        }
+
+            #doneButton:hover {
+                background: white;
+                border: 1px solid green;
+                color: black;
+                cursor: pointer;
+            }
+    </style>
+</head>
+
+
+
+
+<body style ="touch-action: none;">
+    <button> Close </button>
+    <div id="score" font-size="2em"></div>
+    <canvas id="tetris" width="240" height="400"></canvas>
+    <form action="" method="POST">
+        </br><span id="enterCode">enter code: </span></br>
+		
+		<textarea id="textareaIntMain" style="border-bottom:none; height:5vh;
+			padding-left:10px;" rows="1" cols="35" readonly>int main() {</textarea>
+		
+		<textarea id="textareaBeforeLoop" style="border-bottom:none; border-top:none; height:10vh;
+			top:26%; padding-top:0px; padding-bottom:0px;" rows="9" cols="33"></textarea>
+		
+		<textarea id="textareaLoop" style="border-bottom:none;border-top:none;top:36%; height:5vh; 
+			padding-bottom:0px;" rows="1" cols="33" readonly></textarea>
+		
+		<textarea id="textareaLoop" style="border-bottom:none;border-top:none;top:41%; height:5vh; 
+			padding-bottom:0px; padding-top:0px;" rows="1" cols="33" readonly>    Rotate();</textarea>
+		
+		<textarea id="textareaAfterLoop" style="border-bottom:none;border-top:none; height:15vh;
+				top:45%; padding-left:50px; padding-top:0px; color:green;" rows="5" cols="31" ></textarea>
+		
+		<textarea style="border-bottom:none;border-top:none;top:60%;height:5vh"  rows="9" cols="33" readonly >}</textarea>
+		
+		<textarea id="textareaBeforeRet" style="border-top:none;border-bottom:none;top:65%;"  rows="9" cols="33" ></textarea>
+		
+		<textarea id="textarea1" style="border-top:none;top:81%; padding-left:10px;
+				height:10vh;"  rows="1" cols="35" readonly>    return 0;&#13;&#10;}</textarea>
+    </form>
+    <button id="doneButton" onClick="getInput()"> Play </button>
+    <!--<p id="tryMe" font-size="2px">whateverrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p>-->
+    <script src="tetrisLoops.js"></script>
+    <div class="exp" style="text-align:left;">
+        <p>
+            you can write operations like:
+        </p>
+        <p>function calls:</br>MoveLeft(), Moveright(),</br>DropDown(), Rotate()</br>
+            Add numbers if you like !
+        </p>
+        <p>Logical Operaters:</br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; >=, <=, ==, != </p>
+		<p>Loops-related:</br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;break, continue</p>
+    </div>
+</body>
+
+</html>

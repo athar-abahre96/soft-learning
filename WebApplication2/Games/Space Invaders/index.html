@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Space Invaders</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts/jquery-2.0.3.min.js"></script>
+	<meta charset="utf-8" />
+    <style>
+        .all {
+            display: flex;
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="all">
+        <div id="background">
+            <div id="hero"></div>
+            <div id="enemies"></div>
+            <div id="missiles"></div>
+        </div>
+        <h3 id="score">0</h3>
+    </div>
+
+    <script>
+
+        var score = 0;          
+        
+
+        var hero = {
+            top: 700,
+            left: 550
+        };
+
+        
+
+        var missiles = [];
+        var enemies = [
+           { left: 200, top: 100 },
+           { left: 300, top: 100 },
+           { left: 400, top: 100 },
+           { left: 500, top: 100 },
+           { left: 600, top: 100 },
+           { left: 700, top: 100 },
+           { left: 800, top: 100 },
+           { left: 900, top: 100 },
+           { left: 200, top: 175 },
+           { left: 300, top: 175 },
+           { left: 400, top: 175 },
+           { left: 500, top: 175 },
+           { left: 600, top: 175 },
+           { left: 700, top: 175 },
+           { left: 800, top: 175 },
+           { left: 900, top: 175 }
+        ];
+
+        document.onkeydown = function (e) {
+            if (e.keyCode === 37) {
+                console.log("LEFT");
+                hero.left -= 10;
+                moveHero();
+
+            }
+            else if (e.keyCode === 39) {
+                console.log("RIGHT");
+                hero.left += 10;
+                moveHero();
+
+            }
+
+            else if (e.keyCode === 32) {
+                console.log("FIRE");
+                missiles.push({
+                    left: hero.left + 15,
+                    top: hero.top
+                })
+                console.log(missiles);
+                drawMissiles();
+            }
+        }
+
+        function moveHero() {
+            document.getElementById('hero').style.left = hero.left + "px";
+        }
+
+        function drawMissiles() {
+            document.getElementById('missiles').innerHTML = "";
+            for (var missile = 0; missile < missiles.length; missile = missile + 1) {
+                document.getElementById('missiles').innerHTML +=
+                `<div class='missile' style='left:${missiles[missile].left}px; top:${missiles[missile].top}px;'></div>`;
+            }
+        }
+
+        function drawEnemies() {
+            document.getElementById('enemies').innerHTML = "";
+            for (var enemy = 0; enemy < enemies.length; enemy = enemy + 1) {
+                document.getElementById('enemies').innerHTML +=
+                `<div class='enemy' style='left:${enemies[enemy].left}px; top:${enemies[enemy].top}px;'></div>`;
+            }
+        }
+
+        function moveMilssiles() {
+            for (var missile = 0; missile < missiles.length; missile = missile + 1) {
+                missiles[missile].top -= 5;
+            }
+        }
+
+        function moveEnemies() {
+            for (var enemy = 0; enemy < enemies.length; enemy = enemy + 1) {
+                enemies[enemy].top += 1;
+            }
+        }
+
+        function collisionDetection() {
+            for (var enemy = 0; enemy < enemies.length; enemy = enemy + 1) {
+                for (var missile = 0; missile < missiles.length; missile = missile + 1) {
+                    if ((missiles[missile].top <= enemies[enemy].top + 50) &&
+                        (missiles[missile].top >= enemies[enemy].top) &&
+                        (missiles[missile].left >= enemies[enemy].left) &&
+                        (missiles[missile].left <= enemies[enemy].left + 50)) {
+                        console.log("HIT");
+                        enemies.splice(enemy, 1);
+                        missiles.splice(missile, 1);
+                        score+= 10;
+                        $("#score").text(`${score}`);                        
+                    }
+                    if (enemies.length === 0) {
+                        document.location.reload(true);
+                    }
+
+                    
+                }
+            }
+        }       
+
+        function deathDetection() {
+            for (var enemy = 0; enemy < enemies.length; enemy = enemy + 1) {
+                if (enemies[enemy].top >= hero.top - 50) {
+                    //alert("You Lose");
+                    document.location.reload(true);
+                }
+
+                
+            }
+        }
+
+        function gameLoop() {            
+            setTimeout(gameLoop, 40);
+            moveMilssiles();
+            drawMissiles();
+            moveEnemies();
+            drawEnemies();
+            collisionDetection();
+            deathDetection();            
+        }
+        gameLoop();
+
+    </script>
+</body>
+</html>

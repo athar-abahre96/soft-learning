@@ -1,0 +1,134 @@
+﻿  body {
+  background-image: url(../memphis-mini-dark/mini.png)/* url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/nasty_fabric.png) */
+}
+
+.position001 {
+            position: relative;
+        }
+
+        .block001 {
+            position: absolute;
+            top: 238px;
+            left: 175px;
+        }
+
+         .block002 {
+            position: absolute;
+            top: 312px;
+            left: 146px;
+        }
+
+          .block003 {
+            position: absolute;
+            top: 425px;
+            left: 149px;
+        }
+
+        .button001 {
+            background-color: transparent;
+            border: 1px solid transparent;
+            width: 55px;
+            height: 30px;
+        }
+
+        .button002 {
+            background-color: transparent;
+            border: 1px solid transparent;
+            width: 45px;
+            height: 30px;
+        }
+
+         .button003 {
+            background-color: transparent;
+            border: 1px solid transparent;
+            width: 45px;
+            height: 30px;
+        }
+
+        .hide001 {
+            background-color: white;
+            border: 1px solid white;
+        }
+
+       
+         #mark001 {
+            position:absolute;
+            top: 237px;
+            left: 170px;
+            width: 54px;
+            height: 25px;
+            border:dotted;
+            border-color:red;
+        }
+
+        #text1 {
+            position:absolute;
+            top: 210px;
+            left: 245px;
+            color:red;
+            font-size:25px;
+        }
+
+        #mark002 {
+
+           position:absolute;
+            top: 312px;
+            left: 143px;
+            width: 45px;
+            height: 23px;
+            border:dotted;
+            border-color:red;
+        }
+
+        #text2 {
+             position:absolute;
+            top: 285px;
+            left: 210px;
+            color:red;
+            font-size:25px;
+
+        }
+
+         #mark003 {
+
+           position:absolute;
+            top: 422px;
+            left: 140px;
+            width: 40px;
+            height: 23px;
+            border:dotted;
+            border-color:red;
+        }
+
+        #text3 {
+             position:absolute;
+            top: 400px;
+            left: 210px;
+            color:red;
+            font-size:25px;
+
+        }
+
+
+        .blue001 {
+            background-color: blue;
+            border: none;
+            color: white;
+            padding: 12px 17px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 25px;
+            margin: 2px 2px;
+            border-radius: 9px;
+            cursor: pointer;
+            width: 200px;
+        }
+
+           #title {
+            font-family:'Franklin Gothic Book';
+        }
+
+           * {
+	outline: none;
+}

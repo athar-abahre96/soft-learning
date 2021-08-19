@@ -1,0 +1,9 @@
+﻿Which one is not an object oriented programming language?;java, C#,C++,C;C
+Which langue is used for styling web pages?;HTML,JQuery,CSS,XML;CSS
+In memory - where are the dynamic variables?;data,heap,stack,code;heap
+There are ____ main components of object oriented programming;1,6,2,4;4
+In memory - where are the code segment?;data,heap,stack,code;code
+Which language is used for web apps?;PHP,Python,Javascript,All;All
+In memory - where are the global variables?;data,heap,stack,code;data
+MVC is a ____.";Language,Library,Framework,All;Framework
+In memory - where are the local variables?;data,heap,stack,code;stack

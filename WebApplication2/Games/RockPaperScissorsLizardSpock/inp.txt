@@ -1,0 +1,22 @@
+void main() {
+    String aiChoice = peek();
+    String myChoice;
+    switch(aiChoice) {
+        case "scissors":
+            myChoice = "rock";
+            break;
+        case "paper":
+            myChoice = "scissors";
+            break;
+        case "rock":
+            myChoice = "paper";
+            break;
+        case "lizard":
+            myChoice = "rock";
+            break;
+        default:
+            //lizard poisons spock
+            myChoice = "lizard";
+    }
+    play (myChoice);
+}

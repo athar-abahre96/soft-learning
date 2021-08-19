@@ -1,0 +1,337 @@
+body{
+	margin:0;
+	background-color:white;
+	color:#525252
+}
+.game{
+	display:-webkit-box;
+	display:-ms-flexbox;
+	display:flex;
+	-webkit-box-orient:vertical;
+	-webkit-box-direction:normal;
+	-ms-flex-direction:column;
+	flex-direction:column;
+	-webkit-box-pack:center;
+	-ms-flex-pack:center;
+	justify-content:center;
+	-webkit-box-align:center;
+	-ms-flex-align:center;
+	align-items:center;
+	width:100%;
+	max-width:500px;
+	margin:0 auto
+}
+.game h2,.game h3{margin:10px 0px}
+.game p{text-align:center}
+.game .battle{
+	width:100%;
+	margin:10px 0px;
+	display:-webkit-box;
+	display:-ms-flexbox;
+	display:flex;
+	-webkit-box-orient:vertical;
+	-webkit-box-direction:normal;
+	-ms-flex-direction:column;
+	flex-direction:column;
+	-webkit-box-pack:center;
+	-ms-flex-pack:center;
+	justify-content:center;
+	-webkit-box-align:center;
+	-ms-flex-align:center;
+	align-items:center
+}
+.game .battle .aiChoice{
+	background:#FFFFFF;
+	width:150px;
+	height:150px;
+	text-align:center;
+	line-height:125px;
+	border-radius:15px;
+	-webkit-box-shadow:2px 2px 15px 0px rgba(0,0,0,0.25);
+	box-shadow:2px 2px 15px 0px rgba(0,0,0,0.25);
+	background-size:75%;
+	background-repeat:no-repeat;
+	background-position:center center
+}
+.game .battle .aiChoice.rock{background-image:url("../images/pack2/rock.png")}
+.game .battle .aiChoice.paper{background-image:url("../images/pack2/paper.png")}
+.game .battle .aiChoice.scissors{background-image:url("../images/pack2/scissors.png")}
+.game .options{
+	width:100%;
+	display:-webkit-box;
+	display:-ms-flexbox;
+	display:flex;
+	-ms-flex-pack:distribute;
+	justify-content:space-around;
+	margin:10px 0px
+}
+.game .options .option{
+	background:#FFFFFF;
+	width:125px;
+	height:125px;
+	text-align:center;
+	line-height:125px;
+	border-radius:15px;
+	-webkit-box-shadow:2px 2px 15px 0px rgba(0,0,0,0.25);
+	box-shadow:2px 2px 15px 0px rgba(0,0,0,0.25);
+	cursor:pointer;
+	background-size:75%;
+	background-repeat:no-repeat;
+	background-position:center center
+}
+.game .options .option:hover{
+	-webkit-box-shadow:0px 0px 4px 0px rgba(0,0,0,0.25);
+	box-shadow:0px 0px 4px 0px rgba(0,0,0,0.25)
+}
+.game .options .option.rock{background-image:url("../images/pack2/rock.png")}
+.game .options .option.paper{background-image:url("../images/pack2/paper.png")}
+.game .options .option.scissors{background-image:url("../images/pack2/scissors.png")}
+.game .options .option.selected{
+	border:3px solid #000;
+	/*pointer events none ==> you can do anything to the selected item!*/
+	pointer-events:none
+}
+.game .options .option.selected.winner{background-color:#24A484}
+.game .options .option.selected.loser{background-color:#AF1E2D}
+.game .options .option.selected.draw{background-color:#FFCE00}
+.game .options .option.disabled{
+	cursor:default;
+	pointer-events:none;
+	opacity:0.5
+}
+.hide{display:none}
+
+#enterCode {
+	position: absolute;
+	top: 15%;
+	left: 72%;
+	font-size:25px;
+}
+#doneButton {
+	position: absolute;
+	background: black;
+	color: white;
+	top: 93%;
+	left: 77%;
+	width: 200px;
+	opacity:0.9;
+	display:none;
+}
+#doneButton:hover {
+	border: 3px solid blue;
+	cursor: pointer;
+	opacity:1;
+}
+textarea {
+	background: black;
+	position: absolute;
+	top: 20%;
+	left: 72%;
+	margin:0;
+	color: white;
+	font-family: 'Gloria Hallelujah';
+	font-size: 20px;
+	padding: 10px;
+	height: 67vh;
+	border: 3px dashed white;
+	display:none;
+}
+.delay {
+	display:none;
+}
+
+
+
+/*
+ * Styles for congratulations modal
+ */
+
+
+.overlay {
+    position: fixed;
+    bottom: 16%;
+    left: 0;
+    right: 0;
+    transition: opacity 500ms;
+}
+
+    .overlay:target {
+        visibility: visible;
+        opacity: 1;
+    }
+
+.popup {
+    margin: 120px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 5px;
+    width: 85%;
+    position: relative;
+    transition: all 5s ease-in-out;
+    font-family: 'Gloria Hallelujah', cursive;
+    background-color: gray;
+}
+
+    .popup h2 {
+        margin-top: 0;
+        color: white;
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 58px;
+    }
+
+    .popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+    }
+
+        .popup .close:hover {
+            color: #E5F720;
+        }
+
+    .popup .content-1,
+    .content-2 {
+        max-height: 30%;
+        overflow: auto;
+        text-align: center;
+        font-size: 52px;
+        color: lightgrey;
+    }
+
+.show {
+    visibility: visible !important;
+    opacity: 100 !important;
+}
+
+#starRating li {
+    display: inline-block;
+}
+
+#play-again {
+    background-color: #141214;
+    padding: 0.7rem 1rem;
+    font-size: 1.1rem;
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    font-family: 'Gloria Hallelujah', cursive;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+/* animations */
+@keyframes flipInY {
+    from {
+        transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+        animation-timing-function: ease-in;
+        opacity: 0;
+    }
+
+    40% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+        animation-timing-function: ease-in;
+    }
+
+    60% {
+        transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+        opacity: 1;
+    }
+
+    80% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    }
+
+    to {
+        transform: perspective(400px);
+    }
+}
+
+@keyframes rubberBand {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        transform: scale3d(.95, 1.05, 1);
+    }
+
+    75% {
+        transform: scale3d(1.05, .95, 1);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        transform: scale3d(1.2, 1.2, 1.2);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+
+/****** Media queries
+***************************/
+
+
+@media (max-width: 320px) {
+    .deck {
+        width: 85%;
+    }
+
+        .deck .card {
+            height: 4.7rem;
+            width: 4.7rem;
+        }
+}
+
+
+/* For Tablets and larger screens
+****************/
+
+@media (min-width: 768px) {
+    .container {
+        font-size: 22px;
+    }
+
+    .deck {
+        width: 660px;
+        height: 680px;
+    }
+
+        .deck .card {
+            height: 125px;
+            width: 125px;
+        }
+
+    .popup {
+        width: 50%;
+    }
+}
+

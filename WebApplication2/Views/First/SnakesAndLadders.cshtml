@@ -1,0 +1,544 @@
+﻿@model WebApplication2.Models.Player
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Snakes and Ladders</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/SnakeLadder.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <style>
+        .all {
+            display: flex;
+            position: initial;
+        }
+
+        h1 {
+            text-align: center;
+            color: dimgrey;
+        }
+
+        .middle_buttons {
+            display: flow-root;
+        }
+
+        game {
+            position: fixed;
+            top: 50%;
+            left: 43%;
+            display: inline-block;
+            padding: 1.2em 4.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto',sans-serif;
+            font-weight: 300;
+            background-color: #bddfa1;
+            text-align: center;
+            transition: all 0.2s;
+            font-weight: bold;
+            color: white;
+        }
+
+            game:hover {
+                color: white;
+                border-color: #DDDDDD;
+            }
+
+            game:active {
+                color: #BBBBBB;
+                border-color: #BBBBBB;
+            }
+        :root {
+            --bg: #1a1e24;
+            --color: coral;
+            --font: Montserrat, Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .wrapper {
+            filter: url('#goo');
+        }
+
+        .exit {
+            display: inline-block;
+            text-align: center;
+            background: var(--color);
+            color: var(--bg);
+            padding: 0.18em 1.32em 1.03em;
+            line-height: 1;
+            border-radius: 1em;
+            position: relative;
+            min-width: 5.23em;
+            text-decoration: none;
+            font-family: Marker Felt, fantasy;
+            font-size: 1.25rem;
+            right: -105%;
+            height: 8px;
+        }
+
+            .exit:before,
+            .exit:after {
+                width: 4.4em;
+                height: 2.45em;
+                position: absolute;
+                content: "";
+                display: inline-block;
+                background: var(--color);
+                border-radius: 50%;
+                transition: transform 1s ease;
+                transform: scale(0);
+                z-index: -1;
+            }
+
+            .exit:before {
+                top: -25%;
+                left: 20%;
+            }
+
+            .exit:after {
+                bottom: -25%;
+                right: 20%;
+            }
+
+            .exit:hover:before,
+            .exit:hover:after {
+                transform: none;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <a class="exit" href="~/First/MultiGames">Exit</a>
+    </div>
+
+    <!-- Filter: https://css-tricks.com/gooey-effect/ -->
+    <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="all">
+        <div id="snakenladderBoard"></div>
+        <div id="statistics">
+            <div id="gameMessage"></div>
+            <div id="dice">0</div>
+            <button class="roll">Roll</button>
+            <div id="players"></div>
+            <div id="middle" class="overlay">
+                <div class="popup">
+                    <h1>
+                        If you want to go up on the ladder you need to answer a question,
+                        are you ready?
+                    </h1>
+                    <div class="middle_buttons">
+                        <h2 id="game" href="#">
+                            Let's go!
+                        </h2>
+                        <p id="question" style="font-family: cursive; font-size: larger;"></p>
+                        <div class="buttons">
+                            <input id="answer" type="text" name="question1">
+                            <input id="check" type="button" value="check">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="popup1" class="overlay">
+                <div class="popup">
+                    <h1>Congratulations 🎉</h1>
+                    <a class="close" href="~/First/MultiGames">X</a>
+                    <h2 class="content-1" id="playerLegend">  🎉🎉</h2>
+                    <button class="button" type="submit" onclick="next()">
+                        Return
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    // declare modal
+        let modal = document.getElementById("popup1");
+        let modal_middle = document.getElementById("middle");
+        if (@Model.Score < 100) {
+            q1 = "Variable expressions are mathematical statements that contain:\nA.Only numbers \nB.Only letters \nC.Numbers and letters \nD.One letter and no numbers";
+            q2 = "Identify the commutative property:\n A. A + b = a + b \nB.A + b = b + a \nC.B + a = a + B \nD.A + b = 0";
+            q3 = "What value will return to the operating system upon the successful completion of a program ?\n A. - 1 \nB. 1 \nC. 0 \nD.Programs do not return a value";
+            q4 = "The keyword ‘break’ cannot be simply used within _________ \n a) do -while \nb) if-else \nc) for \nd) while ";
+            q5 = "Which keyword is used to come out of a loop only for that iteration?\n a) break \nb) continue \nc) return \nd) none of the mentioned ";
+            q6 = "Which loop is most suitable to first perform the operation and then test the condition ? \na) for loop \nb) while loop \nc) do -while loop \nd) none of the mentioned ";
+            q7 = "Which of the following operator has the highest precedence in the following? \na) () \nb) sizeof \nc) * \nd) + ";
+            q8 = "Which is correct with respect to the size of the data types? \na) char > int > float \n b) int > char > float \nc) char < int < double \nd) double > char > int";
+            q9 = "Which of the following declarations is not supported by C? \na) String str; \nb) char * str; \nc) float str = 3e2; \nd) Both String str; & float str = 3e2;";
+            q10 = "Pick the operator that associate from the right? \nA. ? : \nB. += \nC. = \nD.All";
+
+            a1 = "C";
+            a2 = "B";
+            a3 = "C";
+            a4 = "c";
+            a5 = "b";
+            a6 = "c";
+            a7 = "a";
+            a8 = "c";
+            a9 = "a";
+            a10 = "D";
+        }
+        else if (@Model.Score > 100 && @Model.Score < 200) {
+            q1 = "Which of following is not accepted in C? \na) static a = 10; //static as \nb) static int func(int); //parameter as static  \nc) static static int a; //a static variable prefixed with static  \nd) all of the mentioned";
+            q2 = "Which of the following cannot be static in C? \na) Variables \nb) Functions \nc) Structures \nd) None of the mentioned";
+            q3 = "Which type of conversion is NOT accepted? \na) From char to int \nb) From float to char pointer \nc) From negative int to char \nd) From double to char";
+            q4 = "When do you need to use type-conversions? \na) The value to be stored is beyond the max limit \nb) The value to be stored is in a form not supported by that data type \nc) To reduce the memory in use, relevant to the value \nd) All of the mentioned";
+            q5 = "Choose the correct statement \na) Size of array must be known at compile time \nb) String constants can be concatenated at compile time \nc) Constant expressions are evaluated at compile time \nd)All";
+            q6 = "What will be the value of var for the following C statement? var = strcmp('Hello", "World'); \na) -1 \nb) 0 \nc) 1 \nd) strcmp has void return -type";
+            q7 = "Which function will you choose to join two words? \na) strcpy() \nb) strcat() \nc) strncon() \nd) memcon()";
+            q8 = "How many bits are in a byte?  \na) 1 \nb) 2 \nc) 4 \nd) 8";
+            q9 = "Functions in C are always _________ \na) Internal \nb) External \nc) Both Internal and External \nd) External and Internal are not valid terms for functions";
+            q10 = "Which of the following declaration is illegal? \na) char * str = “Best C programming classes by Sanfoundry”; \nb) char str[] = “Best C programming classes by Sanfoundry”; \nc) char str[20] = “Best C programming classes by Sanfoundry”; \nd) char[] str = “Best C programming classes by Sanfoundry”;";
+
+            a1 = "c";
+            a2 = "d";
+            a3 = "b";
+            a4 = "d";
+            a5 = "d";
+            a6 = "a";
+            a7 = "b";
+            a8 = "d";
+            a9 = "b";
+            a10 = "d";
+
+        }
+        else if (@Model.Score > 200) {
+            q1 = "What does the following declaration mean? int (*ptr)[10]; \nA. Ptr is array of pointers to 10 integers \nB. Ptr is a pointer to an array of 10 integers \nC. Ptr is an array of 10 integers \nD. Ptr is an pointer to array";
+            q2 = "Which bitwise operator is suitable for checking whether a particular bit is on or off? \nA. && operator \nB. & operator \nC. || operator \nD. !operator";
+            q3 = "Which type of conversion is NOT accepted? \na) From char to int \nb) From float to char pointer \nc) From negative int to char \nd) From double to char";
+            q4 = "When do you need to use type-conversions? \na) The value to be stored is beyond the max limit \nb) The value to be stored is in a form not supported by that data type \nc) To reduce the memory in use, relevant to the value \nd) All of the mentioned";
+            q5 = "Choose the correct statement \na) Size of array must be known at compile time \nb) String constants can be concatenated at compile time \nc) Constant expressions are evaluated at compile time \nd)All";
+            q6 = "What will be the value of var for the following C statement? var = strcmp('Hello", "World'); \na) -1 \nb) 0 \nc) 1 \nd) strcmp has void return -type";
+            q7 = "Which function will you choose to join two words? \na) strcpy() \nb) strcat() \nc) strncon() \nd) memcon()";
+            q8 = "How many bits are in a byte?  \na) 1 \nb) 2 \nc) 4 \nd) 8";
+            q9 = "Functions in C are always _________ \na) Internal \nb) External \nc) Both Internal and External \nd) External and Internal are not valid terms for functions";
+            q10 = "Which of the following declaration is illegal? \na) char * str = “Best C programming classes by Sanfoundry”; \nb) char str[] = “Best C programming classes by Sanfoundry”; \nc) char str[20] = “Best C programming classes by Sanfoundry”; \nd) char[] str = “Best C programming classes by Sanfoundry”;";
+
+
+            a1 = "C";
+            a2 = "B";
+            a3 = "b";
+            a4 = "d";
+            a5 = "d";
+            a6 = "a";
+            a7 = "b";
+            a8 = "d";
+            a9 = "b";
+            a10 = "d";
+
+        }
+
+    // add method in string prototype
+        String.prototype.replaceAt = function (index, replacement) {
+            return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+        };
+        var original = 0;
+        var currentQuest = 1;
+        var lastLadder = false;
+        var questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+        var answers = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10];
+        var correct = 0;
+        var finish = false;
+        var SnakeLadderModule = (function () {
+            var players = [{
+                name: 'Player1',
+                position: 0,
+                bg: '#f55bf5'
+            }, {
+                name: 'Player2',
+                position: 0,
+                bg: '#75ff79'
+            },];
+            var idOfplayerTurn = 0;
+
+            /// Create snake-ladder board
+            function initUI() {
+                for (var i = 0; i < 10; i++) {
+                    var decrow = $('<div class="row"></div>');
+                    for (var j = 0; j < 10; j++) {
+                        var disVal = 0;
+                        if (i % 2 === 0) {
+                            disVal = 10 * i + j + 1;
+                        } else {
+                            disVal = 10 * i + 10 - j;
+                        }
+                        disVal = 100 - disVal + 1;
+                        decrow.append('<div id="cell_' + disVal + '"></div>'); //' + disVal + '
+                    }
+                    $('#snakenladderBoard').append(decrow[0].outerHTML);
+                }
+            }
+
+            /// Build Players
+            function BuildPlayers() {
+                for (var i = 0; i < players.length; i++) {
+                    var player = players[i];
+                    var playerHtml = "<span id='player" + i + "' class='player' style='background-color:" + player.bg + "'></span>";
+                    var playerLegendHtml = "<div id='playerLegend" + i + "' class='legends' style='background-color:" + player.bg + "'>" + player.name + "<span>0</span></div>";
+                    $("#players").append(playerHtml + playerLegendHtml);
+                }
+            }
+
+            $("#check").on("click", function () {
+                modal_middle.classList.remove("show");
+                finish = true;
+
+                return;
+            });
+            function check(newN) {
+                currentQuest = newN;
+                var answer = document.getElementById("answer");
+                if (answer.value === answers[newN]) {
+                     var URl = '@Url.Action("snakesLadders_Qresult", "First")';
+
+                        $.ajax({
+                            url: URl,
+                            data: { id: 10 }
+                        });
+                }
+                else {
+                    correct = 0;
+                }
+
+            }
+
+
+            function RandomizeDice() {
+                return Math.floor(Math.random() * 6) + 1;
+            }
+
+            function changeLink() {
+
+                var rand = Math.floor(Math.random() * 3);
+
+                var URl = '@Url.Action("SnkLds","First")';
+                $.ajax({
+                    url: URl,
+                    data: { id: rand },
+                    success: function (data) {
+                        //call is successfully completed and we got result in data
+                    }
+                });
+
+            }
+            return {
+                Init: function () {
+                    initUI();
+                    BuildPlayers();
+                    $("#playerLegend" + idOfplayerTurn).addClass('active');
+                },
+                RollDice: function () {
+                    var game = document.getElementById("game");
+                    var ques = document.getElementById("question");
+                    var randm = RandomizeDice();
+                    var die1 = document.getElementById("dice");
+                    die1.innerHTML = randm;
+                    var answer = document.getElementById("answer");
+                    
+
+                    idOfplayerTurn = idOfplayerTurn % players.length;
+                    $(".legends").removeClass('active');
+                    $("#playerLegend" + (idOfplayerTurn + 1) % players.length).addClass('active');
+
+
+                    if (answer.value !== answers[currentQuest] && lastLadder) {
+                        lastLadder = false;
+                        if (idOfplayerTurn === 0) {
+                            players[1].position = original;
+                            $("#player1").appendTo("#cell_" + original);
+                            $("#playerLegend1").find('span').text(original); 
+                        }
+                        else {
+                            players[0].position = original;
+                            $("#player0").appendTo("#cell_" + original);
+                            $("#playerLegend0").find('span').text(original); 
+                        }                     
+                    }
+
+
+                    var currentPosition = players[idOfplayerTurn].position;
+                    currentPosition += randm;
+                    if (currentPosition >= 100) {
+                        currentPosition = 100;
+                        modal.classList.add("show");
+                        $("#player" + idOfplayerTurn).appendTo("#cell_" + currentPosition);
+                        $("#playerLegend" + idOfplayerTurn).find('span').text('Winner'); //currentPosition
+                        $("button").attr('disabled', 'disabled');
+                        document.getElementById("playerLegend").innerHTML = players[idOfplayerTurn].name + " is the winner!!";
+                        /*handle score*/
+                        if (idOfplayerTurn === 1) {
+                            score = 100;
+                        }
+                        else {
+                            score = 0;
+                        }
+                        var URl = '@Url.Action("snakesLadders_result", "First")';
+
+                        $.ajax({
+                            url: URl,
+                            data: { id: score }
+                        });
+                        closeModal();
+                    }
+                    else {
+                        if (currentPosition === 2) {
+                            var URl = '@Url.Action("snakesLadders_result", "First")';
+                            original = 2;
+                            modal_middle.classList.add("show");
+                            ques.innerText = questions[0];
+                            check(0);
+                            currentPosition = 38;
+                            lastLadder = true;
+
+                        } else if (currentPosition === 7) {
+                            original = 7;
+                            modal_middle.classList.add("show");
+                            ques.innerText = questions[1];
+                            check(1);
+                            currentPosition = 14;
+                            lastLadder = true;
+                        } else if (currentPosition === 8) {
+                            original = 8;
+                            modal_middle.classList.add("show");
+                            ques.innerText = questions[2];
+                            check(2);
+                            currentPosition = 31;
+                            lastLadder = true;
+                        } else if (currentPosition === 15) {
+                            original = 15;
+                            modal_middle.classList.add("show");
+                            ques.innerText = questions[3];
+                            check(3);
+
+                            currentPosition = 26;
+                            lastLadder = true;
+                        } else if (currentPosition === 21) {
+                            original = 21;
+                            modal_middle.classList.add("show");
+                            ques.innerText = questions[4];
+                            check(4);
+
+                            currentPosition = 42;
+                            lastLadder = true;
+                        } else if (currentPosition === 28) {
+                            original = 28;
+                            modal_middle.classList.add("show");
+                            ques.innerText = questions[5];
+                            check(5);
+
+                            currentPosition = 84;
+                            lastLadder = true;
+                        } else if (currentPosition === 36) {
+                            original = 36;
+                            modal_middle.classList.add("show");
+                            ques.innerText = questions[6];
+                            check(6);
+
+                            currentPosition = 44;
+                            lastLadder = true;
+                        } else if (currentPosition === 51) {
+                            original = 51;
+                            modal_middle.classList.add("show");
+                            ques.innerText = questions[7];
+                            check(7);
+
+                            currentPosition = 67;
+                            lastLadder = true;
+                        } else if (currentPosition === 78) {
+                            original = 78;
+                            modal_middle.classList.add("show");
+                            ques.innerText = questions[8];
+                            check(8);
+
+                            currentPosition = 98;
+                            lastLadder = true;
+                        } else if (currentPosition === 71) {
+                            original = 71;
+                            modal_middle.classList.add("show");
+                            ques.innerText = questions[9];
+                            check(9);
+
+                            currentPosition = 91;
+                            lastLadder = true;
+                        } else if (currentPosition === 87) {
+                            original = 87;
+                            modal_middle.classList.add("show");
+                            ques.innerText = questions[10];
+                            check(10);
+
+                            currentPosition = 94;
+                            lastLadder = true;
+
+
+                        } else if (currentPosition === 99) {
+                            currentPosition = 80;
+                        } else if (currentPosition === 95) {
+                            currentPosition = 75;
+                        } else if (currentPosition === 92) {
+                            currentPosition = 88;
+                        } else if (currentPosition === 89) {
+                            currentPosition = 68;
+                        } else if (currentPosition === 74) {
+                            currentPosition = 53;
+                        } else if (currentPosition === 62) {
+                            currentPosition = 19;
+                        } else if (currentPosition === 64) {
+                            currentPosition = 60;
+                        } else if (currentPosition === 46) {
+                            currentPosition = 25;
+                        } else if (currentPosition === 49) {
+                            currentPosition = 11;
+                        } else if (currentPosition === 16) {
+                            currentPosition = 6;
+                        }
+
+                        $("#player" + idOfplayerTurn).appendTo("#cell_" + currentPosition);
+                        $("#gameMessage").text(players[idOfplayerTurn].name + " played " + randm);
+                        $("#playerLegend" + idOfplayerTurn).find('span').text(currentPosition); //currentPosition
+
+                    }
+                    players[idOfplayerTurn].position = currentPosition;
+                    idOfplayerTurn++;
+                }
+            };
+        })();
+
+        function closeModal() {
+            closeicon.addEventListener("click", function (e) {
+                modal.classList.remove("show");
+            });
+        }
+
+        SnakeLadderModule.Init();
+
+        $("button").on("click", function () {
+            SnakeLadderModule.RollDice();
+        });
+
+
+
+
+
+    </script>
+
+</body>
+</html>

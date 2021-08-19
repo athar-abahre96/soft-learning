@@ -1,0 +1,412 @@
+﻿body {
+  background-image: url(../memphis-mini-dark/connectwork.png)/* url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/nasty_fabric.png) */
+}
+
+
+.button {
+  border-radius: 50% !important;
+  font-size: 1.5em;
+  background-color: forestgreen;
+  width: 25px;
+  height: 25px;
+  position:center;
+  margin-left: 115px;
+  margin-top: 20px;
+}
+
+#switches {
+  position: absolute;
+  font-family: 'Original Surfer', cursive;
+  margin-left: 26px;
+  margin-top: 110px;
+}
+
+.text2 {
+  position: absolute;
+  font-family: 'Original Surfer', cursive;
+  margin-left: 83px;
+  margin-top: 197px;
+}
+
+.text1 {
+  position: absolute;
+  font-family: 'Original Surfer', cursive;
+  margin-left: 19px;
+  margin-top: 142px;
+}
+
+.text1 span:last-child {
+  padding-left: 70px;
+}
+
+#title {
+  font-family: 'Original Surfer', cursive;
+  position: absolute;
+  font-size: 40px;
+  margin-left: 35px;
+  margin-top: 40px;
+}
+
+#turn {
+  position: absolute;
+  background: #330000;
+  color: red;
+  font-family: courier;
+  font-size: 20px;
+  height: 30px;
+  width: 50px;
+  margin-left: 66px;
+  margin-top: 127px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 30px;
+  border-color:antiquewhite
+}
+
+#outer-circle {
+  background: #385a94;
+  border-radius: 50%;
+  height: 500px;
+  width: 500px;
+  position: relative;
+  border-style: solid;
+  border-width: 10px;
+  margin: auto;
+  margin-top: 30px;
+  box-shadow: 8px 8px 15px 5px #888888;
+}
+
+#topleft {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  border-radius: 250px 0 0 0;
+  -moz-border-radius: 250px 0 0 0;
+  -webkit-border-radius: 250px 0 0 0;
+  background: darkgreen;
+  top: 50%;
+  left: 50%;
+  margin: -250px 0px 0px -250px;
+  border-style: solid;
+  border-width: 5px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+#topright {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  border-radius: 0 250px 0 0;
+  -moz-border-radius: 0 250px 0 0;
+  -webkit-border-radius: 0 250px 0 0;
+  background: darkred;
+  top: 50%;
+  left: 50%;
+  margin: -250px 0px 0px 0px;
+  border-style: solid;
+  border-width: 5px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+#bottomleft {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  border-radius: 0 0 0 250px;
+  -moz-border-radius: 0 0 0 250px;
+  -webkit-border-radius: 0 0 0 250px;
+  background: goldenrod;
+  top: 50%;
+  left: 50%;
+  margin: 0px -250px 0px -250px;
+  border-style: solid;
+  border-width: 5px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+#bottomright {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  border-radius: 0 0 250px 0;
+  -moz-border-radius: 0 0 250px 0;
+  -webkit-border-radius: 0 0 250px 0;
+  background: darkblue;
+  top: 50%;
+  left: 50%;
+  margin: 0px 0px -250px 0px;
+  border-style: solid;
+  border-width: 5px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+#inner-circle {
+  position: absolute;
+  background: #505050;
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  border-style: solid;
+  border-width: 10px;
+  top: 50%;
+  left: 50%;
+  margin: -125px 0px 0px -125px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+
+
+
+#enterCode {
+	position: absolute;
+	top: 15%;
+	left: 72%;
+	font-size:25px;
+}
+#doneButton {
+	position: absolute;
+	background: black;
+	color: white;
+	top: 93%;
+	left: 77%;
+	width: 200px;
+	opacity:0.9;
+	display:none;
+}
+#doneButton:hover {
+	border: 3px solid blue;
+	cursor: pointer;
+	opacity:1;
+}
+textarea {
+	background-image: url("../try2.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	top: 20%;
+	left: 72%;
+	margin:0;
+	color: white;
+	font-family: 'Gloria Hallelujah';
+	font-size: 20px;
+	padding: 10px;
+	height: 68vh;
+	border: 3px dashed white;
+}
+.background {
+	background-image: url("../try3.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+.delay {
+	display:none;
+	position:Absolute;
+	top:-100px;
+}
+
+
+/*
+ * Styles for congratulations modal
+ */
+
+
+.overlay {
+    position: fixed;
+    bottom: 16%;
+    left: 0;
+    right: 0;
+    transition: opacity 500ms;
+}
+
+    .overlay:target {
+        visibility: visible;
+        opacity: 1;
+    }
+
+.popup {
+    margin: 120px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 5px;
+    width: 85%;
+    position: relative;
+    transition: all 5s ease-in-out;
+    font-family: 'Gloria Hallelujah', cursive;
+    background-color: gray;
+}
+
+    .popup h2 {
+        margin-top: 0;
+        color: white;
+        font-family: Tahoma, Arial, sans-serif;
+        font-size: 58px;
+    }
+
+    .popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+    }
+
+        .popup .close:hover {
+            color: #E5F720;
+        }
+
+    .popup .content-1,
+    .content-2 {
+        max-height: 30%;
+        overflow: auto;
+        text-align: center;
+        font-size: 52px;
+        color: lightgrey;
+    }
+
+.show {
+    visibility: visible !important;
+    opacity: 100 !important;
+}
+
+#starRating li {
+    display: inline-block;
+}
+
+#play-again {
+    background-color: #141214;
+    padding: 0.7rem 1rem;
+    font-size: 1.1rem;
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    font-family: 'Gloria Hallelujah', cursive;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+/* animations */
+@keyframes flipInY {
+    from {
+        transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+        animation-timing-function: ease-in;
+        opacity: 0;
+    }
+
+    40% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+        animation-timing-function: ease-in;
+    }
+
+    60% {
+        transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+        opacity: 1;
+    }
+
+    80% {
+        transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    }
+
+    to {
+        transform: perspective(400px);
+    }
+}
+
+@keyframes rubberBand {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        transform: scale3d(.95, 1.05, 1);
+    }
+
+    75% {
+        transform: scale3d(1.05, .95, 1);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        transform: scale3d(1.2, 1.2, 1.2);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+
+/****** Media queries
+***************************/
+
+
+@media (max-width: 320px) {
+    .deck {
+        width: 85%;
+    }
+
+        .deck .card {
+            height: 4.7rem;
+            width: 4.7rem;
+        }
+}
+
+
+/* For Tablets and larger screens
+****************/
+
+@media (min-width: 768px) {
+    .container {
+        font-size: 22px;
+    }
+
+    .deck {
+        width: 660px;
+        height: 680px;
+    }
+
+        .deck .card {
+            height: 125px;
+            width: 125px;
+        }
+
+    .popup {
+        width: 50%;
+    }
+}
+

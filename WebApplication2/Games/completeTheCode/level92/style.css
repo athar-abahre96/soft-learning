@@ -1,0 +1,94 @@
+﻿  body {
+  background-image: url(../memphis-mini-dark/leaves-pattern.png)/* url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/nasty_fabric.png) */
+}
+
+#textbox1 {
+
+    position: absolute;
+    top: 240px;
+    left:105px;
+    height: 25px;
+    width: 75px;
+	margin-bottom: 20px;
+	display: block;
+    font-size:large;
+}
+
+#textbox2 {
+
+    position: absolute;
+    top: 385px;
+    left: 157px;
+    height: 25px;
+    width: 50px;
+	margin-bottom: 20px;
+	display: block;
+    font-size:large;
+}
+
+#textbox3 {
+
+    position: absolute;
+    top: 700px;
+    left: 70px;
+    height: 25px;
+    width: 115px;
+	margin-bottom: 20px;
+	display: block;
+    font-size:large;
+}
+
+#x1 {
+
+    position: absolute;
+    top: 240px;
+    left: 500px;
+    height: 30px;
+    width: 50px;
+	margin-bottom: 20px;
+	display: block;
+    font-size:large;
+
+}
+
+#x2 {
+
+    position: absolute;
+    top: 385px;
+    left: 500px;
+    height: 30px;
+    width: 50px;
+	margin-bottom: 20px;
+	display: block;
+    font-size:large;
+
+}
+
+#x3 {
+
+    position: absolute;
+    top: 700px;
+    left: 500px;
+    height: 30px;
+    width: 50px;
+	margin-bottom: 20px;
+	display: block;
+    font-size:large;
+
+}
+
+button {
+    height: 20px;
+    width: 120px;
+    margin-left:10px;
+    font-size:medium;
+    border-color:blue;
+}
+
+button2 {
+    height: 20px;
+    width: 120px;
+    margin-left:10px;
+    font-size:medium;
+    border-color:blue;
+}

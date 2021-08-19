@@ -1,0 +1,834 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <title>TETRIS</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Games/TetrisCode/tetris.css">
+    <style>
+        body {
+            background: #202028;
+            color: white;
+            font-family: sans-serif;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: solid 15px white;
+            height: 85vh;
+        }
+
+        h1 {
+            color: black;
+        }
+
+        textarea {
+            background: #202028;
+            position: absolute;
+            top: 20%;
+            left: 67%;
+            color: white;
+            font-family: sans-serif;
+            font-size: 20px;
+            padding: 10px;
+            height: 65vh;
+            border: 3px dashed white;
+        }
+
+        .exp {
+            top: 20%;
+            left: 5%;
+            background: #202028;
+            position: absolute;
+            color: white;
+            font-family: FreeMono, monospace;
+            font-size: 20px;
+            padding: 10px;
+            height: 65vh;
+            border: 3px dashed white;
+        }
+
+        #enterCode {
+            position: absolute;
+            top: 15%;
+            left: 67%;
+        }
+
+        #doneButton {
+            position: absolute;
+            background: #202028;
+            color: white;
+            hover: background:white;
+            top: 95%;
+            left: 75%;
+            width: 200px;
+            transition-duration: .5s;
+        }
+
+            #doneButton:hover {
+                background: white;
+                border: 1px solid green;
+                color: black;
+                cursor: pointer;
+            }
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%;
+            height: 40%;
+        }
+
+        #level {
+            top: 50%;
+            left: 35%;
+            display: inline-block;
+            padding: 1.0em 5.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto',sans-serif;
+            font-weight: 300;
+            color: black;
+            text-align: center;
+            transition: all 0.2s;
+            font-weight: bold;
+        }
+
+        :root {
+            --bg: #1a1e24;
+            --color: grey;
+            --font: Montserrat, Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .wrapper {
+            padding: 1.5rem 0;
+            filter: url('#goo');
+        }
+
+        .exit {
+            display: inline-block;
+            text-align: center;
+            background: var(--color);
+            color: var(--bg);
+            padding: 0.18em 1.32em 1.03em;
+            line-height: 1;
+            border-radius: 1em;
+            position: relative;
+            min-width: 5.23em;
+            text-decoration: none;
+            font-family: Marker Felt, fantasy;
+            font-size: 1.25rem;
+            left: -34%;
+            height: 8px;
+        }
+
+            .exit:before,
+            .exit:after {
+                width: 4.4em;
+                height: 2.45em;
+                position: absolute;
+                content: "";
+                display: inline-block;
+                background: var(--color);
+                border-radius: 50%;
+                transition: transform 1s ease;
+                transform: scale(0);
+                z-index: -1;
+            }
+
+            .exit:before {
+                top: -25%;
+                left: 20%;
+            }
+
+            .exit:after {
+                bottom: -25%;
+                right: 20%;
+            }
+
+            .exit:hover:before,
+            .exit:hover:after {
+                transform: none;
+            }
+        .button2 {
+            position: static;
+            top: 50%;
+            left: 44%;
+            display: inline-block;
+            padding: 0.2em 4.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 75px 0.3em 0.3em 0;
+            border-radius: 0.42em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto',sans-serif;
+            font-weight: 300;
+            background-color: #66cdaa;
+            text-align: center;
+            transition: all 0.2s;
+            font-weight: bold;
+            color: white;
+            height: 39px;
+        }
+
+            .button2:hover {
+                color: white;
+                border-color: #DDDDDD;
+            }
+
+            .button2:active {
+                color: #BBBBBB;
+                border-color: #BBBBBB;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <button class="exit" id="exit">Exit</button>
+    </div>
+
+    <!-- Filter: https://css-tricks.com/gooey-effect/ -->
+    <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+    <div class="window">
+
+
+        <div id="score" font-size="2em"></div>
+        <canvas id="tetris" width="240" height="400"></canvas>
+        <form action="" method="POST">
+            <br><span id="enterCode">enter code: </span></br><textarea id="textarea1" rows="18" cols="35"></textarea>
+            <div id="popup1" class="modal">
+                <div class="popup">
+                    <a class="close" href="~/First/singleGames">×</a>
+                    <div class="content-1">
+                        <h1 id="levelUp"></h1>
+                        <p id="message"></p>
+                    </div>
+                    <button id="level" onclick="Level()">
+                        Next Level!
+                    </button>
+
+                </div>
+            </div>
+        </form>
+        <button id="doneButton" onClick="getInput()"> Done </button>
+        <div class="exp">
+            <p>
+                you can write operations like:
+            </p>
+            <p contenteditable="true" style="white-space:nowrap;overflow:hidden;">   MoveLeft()        </p>
+            <p>   MoveRight()        </p>
+            <p>    DropDown()        </p>
+            <p>   Rotate()        </p>
+            <p></p>
+            <p>
+                Add numbers if you like !
+            </p>
+        </div>
+
+        
+    </div>
+    <div id="startPopup" class="overlay">
+        <div class="popup">
+            <h2>Are you ready?</h2>
+            <button class="button2" id="lets">
+                Let's go!
+            </button>
+        </div>
+    </div>
+    <script>
+
+
+        const canvas = document.getElementById("tetris");
+        const context = canvas.getContext("2d");
+        // declare modal
+        let modal = document.getElementById("startPopup");
+        //modal.classList.add("show");
+        var flag = 0;
+        var startLevel = 1;
+        context.scale(20, 20);
+
+        function arenaSweep() {
+            let rowCount = 1;
+            let numRowsSweep = 0;
+            var oldScore = player.score;
+            outer: for (let y = arena.length - 1; y > 0; --y) {
+                for (let x = 0; x < arena[y].length; ++x) {
+                    if (arena[y][x] === 0) {
+                        continue outer;
+                    }
+                }
+                //index of splice is y and length of splice is 1
+                //now we access that row directly and fill it with rows!
+                //we put [0] is because we got a splice of length 1.
+                const row = arena.splice(y, 1)[0].fill(0);
+                //pushes to the beginning of an array.
+                arena.unshift(row);
+                ++y;
+                player.score += rowCount * 10;
+                rowCount *= 2;
+                numRowsSweep++;
+            }
+            if (oldScore !== player.score) {
+                if (numRowsSweep === 1) {
+                    //just for test
+                    //document.getElementById("levelUp").innerHTML = "you could have done better, you know...";
+                    //document.body.style.backgroundImage = "url('https://thumbs.gfycat.com/EmbellishedTatteredLadybug-size_restricted.gif')";
+                    alert("you could have done better, you know...");
+
+                } else if (level !== 4 && numRowsSweep === 2 || level === 4 && numRowsSweep === 3) {
+                    //document.body.style.backgroundImage = "url('https://thumbs.gfycat.com/EmbellishedTatteredLadybug-size_restricted.gif')";
+                    alert("AMAZING!, You are doing SO-GOOD!");
+                    //document.getElementById("levelUp").innerHTML = "AMAZING!, You are doing SO-GOOD!";
+                    //  $("#popup1").modal("show");
+                    level++;
+
+                    if (level === 5) {
+                        window.location = "./index2.html";
+                    }
+                } else if (level === 4 && numRowsSweep === 2) {
+                    //level 4 and did 2 rows.
+                    alert("you did good, but you can do Better!");
+                } else if (level === 5 && numRowsSweep === 2) {
+                    alert("NICE!!!!, you are grasping the idea of loops!");
+                    level++;
+
+                }
+                playerReset();
+                arena.forEach(row => row.fill(0));
+                buildArena();
+                update();
+                updateScore();
+            }
+        }
+    /*
+    $("#level").click(function () {
+        level++;
+        playerReset();
+        arena.forEach(row => row.fill(0));
+        buildArena();
+        update();
+        updateScore();
+        return;
+    });*/
+
+    const matrix = [
+	    [0,0,0],
+	    [1,1,1],
+	    [0,1,0]
+    ];
+        function collide(arena, player) {
+            const [m, o] = [player.matrix, player.pos];
+            //y is the row, x is the column.
+            for (let y = 0; y < m.length; y++) {
+                for (let x = 0; x < m[y].length; ++x) {
+                    //we check if the matrix value isn't zero, n then we check if the arena
+                    // has a row and the we check if the arena has a column and BOTH aren't 0
+                    //then we return true cause there is a collision.
+                    if (m[y][x] !== 0 && (arena[y + o.y] &&
+                        arena[y + o.y][x + o.x]) !== 0) {
+                        //it seems that if the arena is outofbounds mayb we get value
+                        //that is not zero(since we made the arena zeros only).
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        function createPiece(type) {
+            if (type === 'T') {
+                return [
+                    [0, 0, 0],
+                    [1, 1, 1],
+                    [0, 1, 0]
+                ];
+            } else if (type === 'O') {
+                return [
+                    [2, 2],
+                    [2, 2]
+                ];
+            } else if (type === 'L') {
+                return [
+                    [0, 3, 0],
+                    [0, 3, 0],
+                    [0, 3, 3]
+                ];
+            } else if (type === 'J') {
+                return [
+                    [0, 4, 0],
+                    [0, 4, 0],
+                    [4, 4, 0]
+                ];
+            } else if (type === 'I') {
+                return [
+                    [0, 5, 0, 0],
+                    [0, 5, 0, 0],
+                    [0, 5, 0, 0],
+                    [0, 5, 0, 0]
+                ];
+            } else if (type === 'S') {
+                return [
+                    [0, 6, 6],
+                    [6, 6, 0],
+                    [0, 0, 0]
+                ];
+            }
+            return [
+                [7, 7, 0],
+                [0, 7, 7],
+                [0, 0, 0]
+            ];
+        }
+
+        function createMatrix(width, height) {
+            const matrix = [];
+            while (height--) {
+                //we push an array that is of width.length and fill it with Zeros.
+                matrix.push(new Array(width).fill(0));
+            }
+            return matrix;
+        }
+
+        function draw() {
+            context.fillStyle = 'black';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            drawMatrix(arena, { x: 0, y: 0 });
+            drawMatrix(player.matrix, player.pos);
+        }
+
+        function drawMatrix(matrix, offset) {
+            var col = colors[colors.length * Math.random() | 0];
+            matrix.forEach((row, y) => {
+                row.forEach((value, x) => {
+                    if (value !== 0) {
+                        context.fillStyle = colors[value];
+                        context.fillRect(x + offset.x
+                            , y + offset.y
+                            , 1, 1);
+                        //1 means covers 2 pixels in the canvas!!!.
+                    }
+
+                });
+            });
+        }
+        var player = {
+            pos: { x: 0, y: 0 },
+            matrix: null,
+            score: 0
+        };
+
+    const arena = createMatrix(12,20);
+
+        function merge(arena, player) {
+            player.matrix.forEach((row, y) => {
+                row.forEach((value, x) => {
+                    if (value !== 0) {
+                        arena[y + player.pos.y][x + player.pos.x] = value;
+                    }
+                });
+            });
+        }
+
+
+        function playerDrop() {
+            player.pos.y++;
+            if (collide(arena, player)) {
+                player.pos.y--;
+                merge(arena, player);
+                playerReset();
+                arenaSweep();
+                updateScore();
+                return 1;
+            }
+            dropCounter = 0;
+            return 0;
+        }
+
+        function getInput() {
+            if (level >= 1 && level <= 4) {
+                var lines = document.getElementById("textarea1").value.split('\n');
+            } else {
+                //must add the one inside the loop.
+                lines = document.getElementById("textarea1").value.split('\n');
+            }
+            var i = 0;
+            var date = new Date();
+            var seconds = date.getMilliseconds();
+            var lastTimeLoop = 0;
+            getInp(seconds, i, lines, 0);
+        }
+
+        function buildArena() {
+            if (level === 1) {
+                arena[arena.length - 1] = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+                arena[arena.length - 1][8] = 0;
+                arena[arena.length - 2] = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+                arena[arena.length - 2][8] = 0;
+                arena[arena.length - 2][9] = 0;
+                arena[arena.length - 2][10] = 0;
+            } else if (level === 2) {
+                arena[arena.length - 1] = [2, 2, 0, 0, 2, 2, 2, 2, 0, 0, 2, 2];
+                arena[arena.length - 2] = [2, 2, 0, 0, 2, 2, 2, 2, 0, 0, 2, 2];
+            } else if (level === 3) {
+                arena[arena.length - 1] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0];
+                arena[arena.length - 2] = [0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0];
+            } else if (level === 4) {
+                arena[arena.length - 1] = [0, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0];
+                arena[arena.length - 2] = [0, 3, 4, 5, 5, 5, 4, 3, 0, 0, 0, 0];
+                arena[arena.length - 3] = [0, 0, 5, 5, 6, 7, 6, 5, 0, 0, 0, 0];
+            } else if (level === 5) {
+                arena[arena.length - 2] = [3, 3, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3];
+                arena[arena.length - 1] = [4, 4, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4];
+            }
+        }
+
+        function getInp(seconds = 0, i, lines, numOfTimes) {
+            //gotta fix if thigns after the ';' and also when there is no number, we set the numOfTime to 1.
+            if (i < lines.length) {
+                if (numOfTimes === 0) {
+                    let begin = 0, endIndex = 0;
+                    let numOfSpaces = 0;
+                    let startCountSpaces = false;
+                    //the num of the ';' and to check if it exists or no.
+                    let endSemicolonExists = false;
+                    let lineOfError = i + 1;
+                    var numOfLeftParenthesis = 0;
+                    var numOfRightParenthesis = 0;
+                    for (let j = 0; j < lines[i].length; j++) {
+                        if (lines[i].charAt(j) === '(') {
+                            if (numOfLeftParenthesis === 0) {
+                                begin = j + 1;
+                            }
+                            numOfLeftParenthesis++;
+                            if (numOfLeftParenthesis > 1) {
+                                alert("dont put more than one left Parenthesis");
+                                i++;
+                                requestAnimationFrame(function () { getInp(seconds, i, lines, 0); });
+                                return -1;
+                            }
+                        }
+                        if (lines[i].charAt(j) === ')') {
+                            endIndex = j;
+                            numOfRightParenthesis++;
+                            if (numOfRightParenthesis > 1) {
+                                alert("dont put more than one right Parenthesis");
+                                i++;
+                                requestAnimationFrame(function () { getInp(seconds, i, lines, 0); });
+                                return -1;
+                            }
+                        }
+                        if (begin !== 0) {
+                            startCountSpaces = true;
+                        }
+                        if (endIndex !== 0) {
+                            startCountSpaces = false;
+                        }
+                        if (startCountSpaces) {
+                            if (lines[i].charAt(j + 1) === ' ') {
+                                numOfSpaces++;
+                            }
+                            if (isNaN(lines[i].charAt(j + 1)) && lines[i].charAt(j + 1) !== ')') {
+                                alert("please enter numbers only as arguments on line " + lineOfError);
+                                i++;
+                                numOfTimes = 0;
+                                requestAnimationFrame(function () { getInp(seconds, i, lines, 0); });
+                                return -1;
+                            }
+                        }
+                        if (begin !== 0 && endIndex !== 0) {
+                            if (lines[i].charAt(j) !== ')' &&
+                                lines[i].charAt(j) !== ' ') {
+                                if (lines[i].charAt(j) === ';') {
+                                    j++;
+                                    endSemicolonExists = true;
+                                    while (j < lines[i].length) {
+                                        if (lines[i].charAt(j) !== ' ') {
+                                            alert("Dont put anything after ';' (line " + lineOfError + ")");
+                                            i++;
+                                            draw();
+                                            requestAnimationFrame(function () { getInp(seconds, i, lines, 0); });
+                                            return -1;
+                                        }
+                                    }
+                                    break;
+                                }
+                                if (j >= lines[i].length && !endSemicolonExists) {
+                                    alert("please put semicolon ';' at end of line " + lineOfError);
+                                } else {
+                                    alert("Dont put anything between the end of function and the ';' (line " + lineOfError + ")");
+                                }
+                                i++;
+                                draw();
+                                requestAnimationFrame(function () { getInp(seconds, i, lines, 0); });
+                                return -1;
+                            }
+                        }
+                    }
+
+                    if (numOfSpaces === endIndex - begin) {
+                        numOfTimes = 1;
+                    } else {
+                        numOfTimes = parseInt(lines[i].substring(begin, endIndex));
+                    }
+                    lines[i] = lines[i].replace(lines[i].substring(begin - 1, lines[i].length), "");
+                }
+                lastTimeLoop = (new Date()).getMilliseconds();
+                if (Math.abs(lastTimeLoop - seconds) > 500) {
+                    //alert(lastTimeLoop +" "+ seconds);
+                    seconds = lastTimeLoop;
+                    if (lines[i] === "MoveLeft") {
+                        playerMove(-1);
+                    } else if (lines[i] === "MoveRight") {
+                        playerMove(1);
+                    } else if (lines[i] === "DropDown") {
+                        dropDownAnimation(seconds);
+                        return;
+                    } else if (lines[i] === "Rotate") {
+                        playerRotate(-1);
+                    }
+                    if (numOfTimes !== 0) {
+                        numOfTimes--;
+                        if (numOfTimes === 0) {
+                            i++;
+                        }
+                    } else {
+                        i++;
+                    }
+                }
+                draw();
+                requestAnimationFrame(function () { getInp(seconds, i, lines, numOfTimes); });
+            }
+        }
+
+        function dropDownAnimation(seconds = 0) {
+            var newTime = (new Date()).getMilliseconds();
+            if (Math.abs(newTime - seconds) > 200) {
+                var collided = playerDrop();
+                seconds = newTime;
+            }
+            draw();
+            if (!collided) {
+                requestAnimationFrame(function () { dropDownAnimation(seconds); });
+            }
+            return;
+        }
+
+
+            //as we rem let == blockscoped!.
+            let lastTime = 0;
+            let dropCounter = 0;
+            let dropInterval = 1000;
+        function update(time = 0) {
+            const deltaTime = time - lastTime;
+            lastTime = time;
+            dropCounter += deltaTime;
+            if (dropCounter > dropInterval) {
+                //playerDrop();
+            }
+            draw();
+            //what this function does is it calls the same function again n again over a change
+            requestAnimationFrame(update);
+        }
+
+
+        const colors = [
+            null,
+            'purple',
+            'yellow',
+            'orange',
+            'blue',
+            'aqua',
+            'green',
+            'red'
+        ];
+
+
+        function playerMove(dir) {
+            player.pos.x += dir;
+            if (collide(arena, player)) {
+                player.pos.x -= dir;
+            }
+        }
+        var pieceCounter = 1;
+        function playerReset() {
+            const pieces = 'ILJOTSZ';
+            player.matrix = createPiece(pieces[Math.random() * pieces.length | 0]);
+            if (pieceCounter % 4 === 0) {
+                if (level === 1) {
+                    player.matrix = createPiece('L');
+                } else if (level === 2) {
+                    player.matrix = createPiece('O');
+                } else if (level === 3) {
+                    player.matrix = createPiece('T');
+                } else if (level === 4) {
+                    let miniPieces = 'IOJ';
+                    player.matrix = createPiece(miniPieces[Math.random() * miniPieces.length | 0]);
+                } else if (level === 5) {
+                    player.matrix = createPiece('T');
+                }
+            }
+            pieceCounter++;
+            player.pos.y = 0;
+            player.pos.x = (arena[0].length / 2 | 0) -
+                (player.matrix[0].length / 2 | 0);
+            if (collide(arena, player)) {
+                player.score = 0;
+                arena.forEach(row => row.fill(0));
+                buildArena();
+            }
+        }
+
+        function playerRotate(dir) {
+            const pos = player.pos.x;
+            let offset = 1;
+            rotate(player.matrix, dir);
+            while (collide(arena, player)) {
+                player.pos.x += offset;
+                offset = -(offset + (offset > 0 ? 1 : -1));
+                if (offset > player.matrix[0].length) {
+                    rotate(player.matrix, -dir);
+                    player.pos.x = pos;
+                    return;
+                }
+            }
+        }
+
+        function rotate(matrix, dir) {
+            for (let y = 0; y < matrix.length; ++y) {
+                for (let x = 0; x < y; ++x) {
+                    //switching the values.
+                    [
+                        matrix[x][y],
+                        matrix[y][x]
+                    ] = [
+                            matrix[y][x],
+                            matrix[x][y]
+                        ];
+                }
+            }
+            if (dir > 0) {
+                matrix.forEach(row => row.reverse());
+            } else {
+                matrix.reverse();
+            }
+
+        }
+                /*
+                document.addEventListener("keydown", event =>{
+                //	console.log(event);
+                    //write on top, pomle.github.io/keycode: 37 left , 38 up, 39 > , 40 down.
+                    if(event.keyCode === 37){
+                        playerMove(-1);
+                    //up
+                    }else if (event.keyCode === 38){
+                    //	player.pos.y--;
+                        playerRotate(-1);
+                    }else if (event.keyCode === 39){
+                        playerMove(+1);
+                    }else if (event.keyCode === 40){
+                        playerDrop();
+                    }else if (event.keyCode === 81){
+                        playerRotate(-1);
+                    }else if (event.keyCode === 87){
+                        playerRotate(1);
+                    }
+                });
+                */
+                //var p = document.getElementById("tryMe");
+        //p.innerHTML = matrix[0].length;
+        var filetext = "";
+        function readFromFile() {
+            var file = "/../Games/TetrisCode/data.txt";
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file);
+            rawFile.onreadystatechange = function () {
+                if (rawFile.readyState === 4) {
+                    if (rawFile.status === 200 || rawFile.status === 0) {
+                        filetext = rawFile.responseText;
+                        //alert(filetext);
+                    }
+                }
+            };
+            rawFile.send(null);
+
+        }
+        readFromFile();
+
+
+        $("#lets").on("click", function () {
+            //document.getElementById("popup1").style.marginBottom= "50px";
+            modal.style.display = "none";
+            //modal.style.backgroundColor = "red";
+            level = Number(filetext);
+            playerReset();
+            buildArena();
+            update();
+            updateScore();
+        });
+
+        $("#exit").on("click", function () {
+            var URl = '@Url.Action("exitTetris", "First")';
+
+                $.ajax({
+                    url: URl,
+                    data: { id: level}
+            });
+            window.location = "/../First/singleGames";
+        });
+
+        function updateScore() {
+            var score = document.getElementById("score");
+            score.innerText = player.score;
+            /*SCORE*/
+            score = player.score;
+            if (score !== 0) {
+                var URl = '@Url.Action("tetris_result", "First")';
+
+                $.ajax({
+                    url: URl,
+                    data: { id: score, levelId: level - 1 },
+                    success: function (data) {
+                        //call is successfully completed and we got result in data
+                    }
+                });
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

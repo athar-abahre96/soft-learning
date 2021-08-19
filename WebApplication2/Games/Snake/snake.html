@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <title>Snake Game</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="snakecss.css" rel="stylesheet">
+    <style>
+        <!--canvas {
+            display: block;
+            margin: 0 auto;
+            height: 90vh;
+        }-->
+		#enterCode {
+            position: absolute;
+            top: 15%;
+            left: 72%;
+			font-family: 'Gloria Hallelujah', cursive;
+        }
+        #doneButton {
+            position: absolute;
+            background: #202028;
+            color: white;
+            hover: background:white;
+            top: 95%;
+            left: 75%;
+            width: 200px;
+            transition-duration: .5s;
+        }		
+    </style>
+</head>
+<body>
+    <canvas id="snake" width="608" height="608"></canvas>
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <!--<h2>too bad!</h2>
+            <a class="close" href=#>×</a>
+            <button type="submit" onclick="click()"></button>
+        </div>-->
+    </div>
+	<form action="" method="POST">
+        </br><span id="enterCode">enter code: </span></br><textarea id="textarea1" rows="18" cols="26"></textarea>
+    </form>
+	<button id="doneButton" onClick="Switch()"> Done </button>
+
+	<textarea style="left:2%; font-size:17px;text-align:center;" id="options" rows="18" cols="33" readonly></textarea>
+    <script src="snake.js"></script>
+</body>
+</html>

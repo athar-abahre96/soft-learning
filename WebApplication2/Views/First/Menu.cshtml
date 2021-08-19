@@ -1,0 +1,178 @@
+﻿@model WebApplication2.Models.Player
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/code.css">
+    <meta charset="utf-8" />
+
+    <style>
+        .buttonsMenu {
+            width: auto;
+            display: inline-block;
+        }
+
+        .container1 {
+            margin: 0 auto;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-position: initial;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position-y: initial;
+        }
+
+        .item1 {
+            /* Padding is used for smaller screens */
+            padding: 0 30px 0 30px;
+            text-align: center;
+        }
+        .button2 {
+            position: static;
+            top: 50%;
+            left: 44%;
+            display: inline-block;
+            padding: 0.2em 4.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 75px 0.3em 0.3em 0;
+            border-radius: 0.42em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto',sans-serif;
+            font-weight: 300;
+            background-color: #66cdaa;
+            text-align: center;
+            transition: all 0.2s;
+            font-weight: bold;
+            color: white;
+            height: 39px;
+        }
+
+        .button2:hover {
+            color: white;
+            border-color: #DDDDDD;
+        }
+
+        .button2:active {
+            color: #BBBBBB;
+            border-color: #BBBBBB;
+        }
+    </style>
+
+
+</head>
+<body style="background-image: url(https://images.unsplash.com/photo-1516721951823-4f214c97eb4d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative; width:100%; height:100%;">
+    <div class="container1">
+        <div class="item1">
+            <div class="buttonsMenu">
+                <a class="frame-btn" href="~/First/Play">
+                    <span class="frame-btn__outline frame-btn__outline--tall">
+                        <span class="frame-btn__line frame-btn__line--tall"></span>
+                        <span class="frame-btn__line frame-btn__line--flat"></span>
+                    </span>
+                    <span class="frame-btn__outline frame-btn__outline--flat">
+                        <span class="frame-btn__line frame-btn__line--tall"></span>
+                        <span class="frame-btn__line frame-btn__line--flat"></span>
+                    </span>
+                    <span class="frame-btn__solid"></span>
+                    <span class="frame-btn__text">Play</span>
+                </a>
+                &nbsp;
+                &nbsp;
+                <a class="frame-btn" href="~/First/quizMenu">
+                    <span class="frame-btn__outline frame-btn__outline--tall">
+                        <span class="frame-btn__line frame-btn__line--tall"></span>
+                        <span class="frame-btn__line frame-btn__line--flat"></span>
+                    </span>
+                    <span class="frame-btn__outline frame-btn__outline--flat">
+                        <span class="frame-btn__line frame-btn__line--tall"></span>
+                        <span class="frame-btn__line frame-btn__line--flat"></span>
+                    </span>
+                    <span class="frame-btn__solid"></span>
+                    <span class="frame-btn__text">Quizes</span>
+                </a>
+                &nbsp;
+                &nbsp;
+                <a class="frame-btn" href="~/First/facts">
+                    <span class="frame-btn__outline frame-btn__outline--tall">
+                        <span class="frame-btn__line frame-btn__line--tall"></span>
+                        <span class="frame-btn__line frame-btn__line--flat"></span>
+                    </span>
+                    <span class="frame-btn__outline frame-btn__outline--flat">
+                        <span class="frame-btn__line frame-btn__line--tall"></span>
+                        <span class="frame-btn__line frame-btn__line--flat"></span>
+                    </span>
+                    <span class="frame-btn__solid"></span>
+                    <span class="frame-btn__text">Did you know?</span>
+                </a>
+                &nbsp;
+                &nbsp;
+                <a class="frame-btn" href="~/First/Leaderboard">
+                    <span class="frame-btn__outline frame-btn__outline--tall">
+                        <span class="frame-btn__line frame-btn__line--tall"></span>
+                        <span class="frame-btn__line frame-btn__line--flat"></span>
+                    </span>
+                    <span class="frame-btn__outline frame-btn__outline--flat">
+                        <span class="frame-btn__line frame-btn__line--tall"></span>
+                        <span class="frame-btn__line frame-btn__line--flat"></span>
+                    </span>
+                    <span class="frame-btn__solid"></span>
+                    <span class="frame-btn__text">Leader Board</span>
+                </a>
+                &nbsp;
+                &nbsp;
+                <a class="frame-btn" href="~/First/Settings">
+                    <span class="frame-btn__outline frame-btn__outline--tall">
+                        <span class="frame-btn__line frame-btn__line--tall"></span>
+                        <span class="frame-btn__line frame-btn__line--flat"></span>
+                    </span>
+                    <span class="frame-btn__outline frame-btn__outline--flat">
+                        <span class="frame-btn__line frame-btn__line--tall"></span>
+                        <span class="frame-btn__line frame-btn__line--flat"></span>
+                    </span>
+                    <span class="frame-btn__solid"></span>
+                    <span class="frame-btn__text">Stats</span>
+                </a>
+            </div>
+        </div>
+     
+            <div id="popup1" class="overlay">
+                <div class="popup">
+                    <h2>Welcome! 🎉</h2>
+                    <a class="close" href="~/First/Menu">×</a>
+                    <div class="content-1">
+                        First time here ? Let's take a quiz
+                    </div>
+                        
+                    <a class="button2" type="submit" href="~/First/quiz2">
+                        Ok
+                    </a>
+
+                </div>
+            </div>
+            
+        
+    </div>
+    <script>
+        // declare modal
+        let modal = document.getElementById("popup1");
+        if (@Model.Enter == 1) {
+            modal.classList.add("show");
+            closeModal();
+        }
+        function closeModal() {
+            closeicon.addEventListener("click", function (e) {
+                modal.classList.remove("show");
+                startGame();
+            });
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,63 @@
+﻿
+
+ *{
+           /* outline: 1px dotted purple;*/
+        }
+#world {
+	text-align:center;
+	margin-top:100px;
+}
+
+.pacman {
+    height: 50px;
+    width: 50px;
+    background-image: url(pacman.png);
+    display: inline-block;
+}
+
+.ghost1 {
+    height: 50px;
+    width: 50px;
+    background-image: url(ghost1.png);
+    display: inline-block;
+}
+
+
+.wall {
+    height: 50px;
+    width: 50px;
+    background-image: url(wall.png);
+    display: inline-block;
+}
+
+.coin {
+    height: 50px;
+    width: 50px;
+    background-image: url(coin.png);
+    display: inline-block;
+}
+
+.ground {
+    height: 50px;
+    width: 50px;
+    background-image: url(bg.png);
+    display: inline-block;
+}
+
+#score {
+    color: palevioletred;
+    font-size: 60px;
+    margin: 15px;
+	position:absolute;
+	text-align:center;
+	top:3%;
+	left:39%;
+}
+
+ div {
+
+     /*line-height: 0px;*/
+     margin: -2px;
+     vertical-align: top;
+ }
+

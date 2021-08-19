@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simon Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='https://fonts.googleapis.com/css?family=Original+Surfer&effect=emboss' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+
+    <audio id="clip1">
+        <source src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"></source>
+    </audio>
+    <audio id="clip2">
+        <source src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"></source>
+    </audio>
+    <audio id="clip3">
+        <source src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"></source>
+    </audio>
+    <audio id="clip4">
+        <source src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"></source>
+    </audio>
+	<script src="jquery-2.0.3.min.js"></script>
+</head>
+
+<body>
+	<span class ="delay"></span>
+    <div id="outer-circle">
+        <div id="topleft"></div>
+        <div id="topright"></div>
+        <div id="bottomleft"></div>
+        <div id="bottomright"></div>
+        <div id="inner-circle">
+            <div id="title" class="font-effect-emboss">SIMON</div>
+            <div id="switches">
+                <button class="button" id="start"></button>
+            </div>
+            
+            <div id="turn"></div>
+            
+        </div>
+    </div>
+	<span id="enterCode">enter code: </span><br/><textarea id="solution" rows="18" cols="31"></textarea>
+	<button id="doneButton" onClick="Switch()"> Done </button>
+	<textarea class="background" style="left:2%; font-size:17px;text-align:center;" id="operations" rows="18" cols="33" readonly></textarea>
+    <script src="js/index.js"></script>
+
+</body>
+</html>

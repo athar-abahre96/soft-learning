@@ -1,0 +1,384 @@
+﻿@model WebApplication2.Models.Player
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/stats.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+
+    <!--<link rel="icon" type="image/png" href="images/icons/favicon.ico" />-->
+    <link rel="stylesheet" type="text/css" href="~/vendor2/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/fonts/NewFolder1/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendor2/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/vendor2/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendor2/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/settingutil.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/settingmain.css">
+
+
+    <title>Stats</title>
+    <style>
+        .container {
+            position: relative;
+            left: 13%;
+        }
+
+        .outer {
+            margin: 29px auto;
+            position: relative;
+            width: 1px;
+            height: 20px;
+            text-align: center;
+        }
+
+            .outer .circle {
+                position: absolute;
+                top: 0;
+                width: 20px;
+                height: 35px;
+                border-radius: 0 30px 30px 0px;
+                -webkit-transform: rotate(-35deg);
+                z-index: 2;
+            }
+
+                .outer .circle:after {
+                    content: "";
+                    position: absolute;
+                    left: -15px;
+                    top: 0;
+                    width: 20px;
+                    height: 35px;
+                    border-radius: 0 30px 30px 0px;
+                    -webkit-transform: rotate(180deg);
+                    z-index: 2;
+                }
+
+        #brown {
+            background-color: sandybrown;
+        }
+
+            #brown::after {
+                background-color: sandybrown;
+            }
+
+        #silver {
+            background-color: darkgrey;
+        }
+
+            #silver::after {
+                background-color: darkgrey;
+            }
+
+        #gold {
+            background-color: gold;
+        }
+
+            #gold::after {
+                background-color: gold;
+            }
+
+        .outer .ribbon {
+            width: 19px;
+            height: 60px;
+            background-color: #9bdbf6;
+            position: absolute;
+            top: -45px;
+            left: -23px;
+            z-index: 1;
+            -webkit-transform: rotate(-35deg);
+            border-right: 1px solid white;
+        }
+
+            .outer .ribbon:after {
+                content: "";
+                width: 15px;
+                height: 60px;
+                top: 18px;
+                left: 25px;
+                background-color: #9bdbf6;
+                position: absolute;
+                -webkit-transform: rotate(70deg);
+            }
+
+            .outer .ribbon:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 64px;
+                width: 1px;
+                background-color: white;
+                z-index: 3;
+            }
+            .other{
+                font-size:25px;
+                display:grid;
+                color:blanchedalmond;
+            }
+        .boxMessage {
+            top: 20%;
+            left: 2%;
+            background: darkslategray;
+            position: absolute;
+            color: white;
+            font-family: 'Agency FB';
+            font-size: 28px;
+            padding: 41px;
+            height: 47vh;
+            border: 6px white;
+            width: 14%;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOehYsGmyy7oYS2Db_Lvz9miZ7EGnLz2OhJHOxQ0yafYw4Mj15);
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            transition: all 200ms;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body style="background-image: url(https://thumbs.gfycat.com/EmbellishedTatteredLadybug-size_restricted.gif); width:100%; height:100%;">
+    @{
+        if (Model != null)
+        {
+    <div class="fullWindow">
+        <h1 style="font-family:'Agency FB';color:white; margin:auto;text-align: center;font-size:85px;">@Model.FirstName - These are your stats!</h1>
+        <a class="close" href="~/First/Menu">></a>
+        <div class="boxMessage">
+
+            <p>
+                If you become an expert you can play our games in the "unlockables" section!
+            </p>
+            <p>
+                play more to gain more points!
+            </p>
+
+        </div>
+        <div class="container">
+
+            <!-- DONUT CHART BLOCK (LEFT-CONTAINER) -->
+            <div class="donut-chart-block block">
+                <h2 class="titular">Rewards</h2>
+                <div class="donut-chart">
+
+                    <p class="center-date">Points<br><span class="scnd-font-color">@Model.Score</span></p>
+                </div>
+                <ul class="os-percentages horizontal-list">
+                    <li>
+                        <p class="ios os scnd-font-color">Begginer</p>
+                        <p class="os-percentage">
+                            @{ if (Model.Score >= 100)
+                                {
+                                    <div class="outer">
+                                        <div class="circle" id="brown"></div>
+                                        <div class="ribbon"></div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div></div>
+                                }
+                            }
+                        </p>
+                    </li>
+                    <li>
+                        <p class="linux os scnd-font-color">Advanced</p>
+                        <p class="os-percentage">
+                            @{ if (Model.Score >= 200)
+                                {
+                                    <div class="outer">
+                                        <div class="circle" id="silver"></div>
+                                        <div class="ribbon"></div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div></div>
+                                }
+                            }
+                        </p>
+                    </li>
+                    <li>
+                        <p class="win os scnd-font-color">Expert</p>
+                        <p class="os-percentage">
+                            @{ if (Model.Score >= 300)
+                                {
+                                    <div class="outer">
+                                        <div class="circle" id="gold"></div>
+                                        <div class="ribbon"></div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div></div>
+                                }
+                            }
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="donut-chart-block block">
+                <h1 class="titular"></h1>
+                <div class="donut-chart">
+                    @{ if (Model.Score < 101)
+                        {
+                            <p class="other">Status:<span class="scnd-font-color">Begginer</span></p>
+                        }
+                        else if (Model.Score > 100 && Model.Score < 301)
+                        {
+                            <p class="other">Status:<span class="scnd-font-color">Advanced</span></p>
+                        }
+                        if (Model.Score > 301)
+                        {
+                            <p class="other">Status:<span class="scnd-font-color">Expert</span></p>
+                        }
+                        <p class="other">Progress:<span class="scnd-font-color">@Model.Advance %</span></p>
+                        <p class="other">Games Completed:<span class="scnd-font-color">@Model.GamePlayed / 10</span></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <div class="limiter">
+                <div class="container-table100">
+                    <div class="wrap-table100">
+
+                        <div class="table100 ver3 m-b-110">
+                            <div class="table100-head">
+                                <table>
+                                    <thead>
+                                        <tr class="row100 head">
+                                            <th class="cell100 column1">Game</th>
+                                            <th class="cell100 column2">Total Score</th>
+                                            <th class="cell100 column3">Level Passed</th>
+
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                            <div class="table100-body js-pscroll">
+                                <table>
+                                    <tbody>
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1">Tetris</td>
+                                            <td class="cell100 column2">@Model.TetrisScore</td>
+                                            <td class="cell100 column3">@Model.TetrisLevel</td>
+                                        </tr>
+
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1">Snake</td>
+                                            <td class="cell100 column2">@Model.SnakeScore</td>
+                                            <td class="cell100 column3">@Model.SnakeLevel</td>
+
+                                        </tr>
+
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1">Simon</td>
+                                            <td class="cell100 column2">@Model.SimonScore</td>
+                                            <td class="cell100 column3">@Model.SnakeLevel</td>
+
+                                        </tr>
+
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1">Matching Game</td>
+                                            <td class="cell100 column2">@Model.MemoryScore</td>
+                                            <td class="cell100 column3">@Model.MemoryLevel</td>
+
+                                        </tr>
+
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1">Snakes And Ladders</td>
+                                            <td class="cell100 column2">@Model.snakesLaddersScore</td>
+                                            <td class="cell100 column3">@Model.SnakeNLaddersLevel</td>
+
+                                        </tr>
+
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1">Rock Paper Scissors</td>
+                                            <td class="cell100 column2">@Model.RPSScore</td>
+                                            <td class="cell100 column3">@Model.RPSLevel</td>
+
+                                        </tr>
+
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1">Fill In The Blanks</td>
+                                            <td class="cell100 column2">@Model.FillScore</td>
+                                            <td class="cell100 column3">@Model.FillLevel</td>
+
+                                        </tr>
+
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1">Fill In The Blanks</td>
+                                            <td class="cell100 column2">@Model.FillScore</td>
+                                            <td class="cell100 column3">@Model.FillLevel</td>
+
+                                        </tr>
+
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1">Find The Errors</td>
+                                            <td class="cell100 column2">@Model.FDEScore</td>
+                                            <td class="cell100 column3">@Model.FDELevel</td>
+
+                                        </tr>
+
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1">PacMan</td>
+                                            <td class="cell100 column2">@Model.PacmanScore</td>
+                                            <td class="cell100 column3">@Model.PacmanLevel</td>
+
+                                        </tr>
+
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1">Space Invaders</td>
+                                            <td class="cell100 column2">@Model.SpaceScore</td>
+                                            <td class="cell100 column3">@Model.SpaceLevel</td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+            <script src="~/vendor2/jquery/jquery-3.2.1.min.js"></script>
+            <script src="~/vendor2/bootstrap/js/popper.js"></script>
+            <script src="~/vendor2/bootstrap/js/bootstrap.min.js"></script>
+            <script src="~/vendor2/select2/select2.min.js"></script>
+            <script src="~/vendor2/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+            <script>
+                $('.js-pscroll').each(function () {
+                    var ps = new PerfectScrollbar(this);
+
+                    $(window).on('resize', function () {
+                        ps.update();
+                    })
+                });
+            </script>
+            <script src="~/js/settingmain.js"></script>
+        }
+
+    }
+</body>
+</html>

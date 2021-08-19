@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="assets/css/main.min.css" />
+</head>
+<body>
+    <div class="game">
+        <h1>Rock, Paper, Scissors</h1>
+        <h2>
+            Scores: (Player / AI) <br />
+        </h2>
+        <h2>
+            <span id="score"></span> / <span id="aiScore"></span>
+        </h2>
+
+
+        <div class="options">
+            <div class="option rock" data-choice="rock"></div>
+            <div class="option paper" data-choice="paper"></div>
+            <div class="option scissors" data-choice="scissors"></div>
+        </div>
+
+        <div class="battle" id="battle">
+            <h3>AI CHOICE</h3>
+        </div>
+
+        <button class="reset hide" id="reset">Reset</button>
+    </div>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>

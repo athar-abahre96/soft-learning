@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+    <title>TETRIS</title>
+
+    <style>
+        body {
+            background: #202028;
+            color: white;
+            font-family: sans-serif;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            border: solid 15px white;
+            height: 85vh;
+        }
+
+        textarea {
+            background: #202028;
+            position: absolute;
+            top: 20%;
+            left: 67%;
+            color: white;
+            font-family: sans-serif;
+            font-size: 20px;
+            padding: 10px;
+            height: 65vh;
+            border: 3px dashed white;
+        }
+
+        .exp {
+            top: 20%;
+            left: 5%;
+            background: #202028;
+            position: absolute;
+            color: white;
+            font-family: FreeMono, monospace;
+            font-size: 20px;
+            padding: 10px;
+            height: 65vh;
+            border: 3px dashed white;
+        }
+
+        #enterCode {
+            position: absolute;
+            top: 15%;
+            left: 67%;
+        }
+
+        #doneButton {
+            position: absolute;
+            background: #202028;
+            color: white;
+            hover: background:white;
+            top: 95%;
+            left: 75%;
+            width: 200px;
+            transition-duration: .5s;
+        }
+
+            #doneButton:hover {
+                background: white;
+                border: 1px solid green;
+                color: black;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <button> Close </button>
+    <div id="score" font-size="2em"></div>
+    <canvas id="tetris" width="240" height="400"></canvas>
+    <form action="" method="POST">
+        </br><span id="enterCode">enter code: </span></br><textarea id="textarea1" rows="18" cols="35"></textarea>
+    </form>
+    <button id="doneButton" onClick="getInput()"> Done </button>
+    <p id="tryMe" font-size="2px">whateverrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p>
+    <script src="tetris.js"></script>
+    <div class="exp">
+        <p>
+            you can write operations like:
+        </p>
+        <p contenteditable="true" style="white-space:nowrap;overflow:hidden;">   MoveLeft()        </p>
+        <p>   Moveright()        </p>
+        <p>    DropDown()        </p>
+        <p>   Rotate()        </p>
+        <p></p>
+        <p>
+            Add numbers if you like !
+        </p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/multi.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/local.css">
+    <title>Unlockables</title>
+    <style>
+        .two {
+        }
+
+        .button2 {
+            top: 50%;
+            padding: 0.2em 1.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 0 0.3em 0.3em 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto',sans-serif;
+            font-weight: 300;
+            background-color: darkslategray;
+            text-align: center;
+            transition: all 0.2s;
+            font-weight: bold;
+            color: white;
+            height: 39px;
+        }
+
+            .button2:hover {
+                color: white;
+                border-color: #DDDDDD;
+            }
+
+            .button2:active {
+                color: #BBBBBB;
+                border-color: #BBBBBB;
+            }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            transition: all 200ms;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        .boxMessage {
+            top: 20%;
+            left: 4%;
+            background: darkslategray;
+            position: absolute;
+            color: white;
+            font-family: 'Agency FB';
+            font-size: 33px;
+            padding: 34px;
+            height: 31vh;
+            border: 6px white;
+            width: 13%;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOehYsGmyy7oYS2Db_Lvz9miZ7EGnLz2OhJHOxQ0yafYw4Mj15);
+            border-radius: 15px 50px;
+        }
+    </style>
+</head>
+<body>
+   
+        
+    <div>
+        <a class="close" href="~/first/Play">></a>
+        @{if (Model.TetrisLevel >= 4)
+            {
+                <div class="wrapper">
+                    <a class="button" href="~/Games/Tetris/index.html">Tetris</a>
+                </div>
+            }
+            else
+            {
+                <div class="wrapper">
+                    <a class="button" style="cursor: not-allowed;" href="">Tetris</a>
+                </div>
+            }
+        }
+        @{if (Model.SnakeLevel > -1)
+            {
+                <div class="wrapper">
+                    <a class="button" href="~/Games/originalGames/Snake/snake.html">Snake</a>
+                </div>
+            }
+            else
+            {
+                <div class="wrapper">
+                    <a class="button" style="cursor: not-allowed;" href="">Snake</a>
+                </div>
+            }
+        }
+        @{if (Model.SimonLevel >= 3)
+            {
+                <div class="wrapper">
+                    <a class="button" href="~/Games/originalGames/Simon/index.html">Simon</a>
+                </div>
+            }
+            else
+            {
+                <div class="wrapper">
+                    <a class="button" style="cursor: not-allowed;" href="">Simon</a>
+                </div>
+            }
+        }
+        @{if (Model.SpaceLevel > 1)
+            {
+                <div class="wrapper">
+                    <a class="button" href="~/Games/Space Invaders/index.html">Space Invaders</a>
+                </div>
+            }
+            else
+            {
+                <div class="wrapper">
+                    <a class="button" style="cursor: not-allowed;" href="">Space Invaders</a>
+                </div>
+            }
+        }
+
+        @{if (Model.PacmanLevel > 1)
+            {
+                <div class="wrapper">
+                    <a class="button" href="~/Games/PacMan/index.html">PacMan</a>
+                </div>
+            }
+            else
+            {
+                <div class="wrapper">
+                    <a class="button" style="cursor: not-allowed;" href="">PacMan</a>
+                </div>
+            }
+        }
+        @{if (Model.RPSLevel >= 3)
+            {
+                <div class="wrapper">
+                    <a class="button" href="~/Games/originalGames/RockPaperScissors/index.html">Rock Paper Scissors</a>
+                </div>
+            }
+            else
+            {
+                <div class="wrapper">
+                    <a class="button" style="cursor: not-allowed;" href="">Rock Paper Scissors</a>
+                </div>
+            }
+        }
+        <!-- Filter: https://css-tricks.com/gooey-effect/ -->
+        <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                    <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                </filter>
+            </defs>
+        </svg>
+
+        <!-- Filter: https://css-tricks.com/gooey-effect/ -->
+        <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                    <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                </filter>
+            </defs>
+        </svg>
+        <div class="boxMessage">
+            <p id="box">
+                If you want to unlock a game you need to finish all his levels in the previous sections.
+            </p>
+        </div>
+        <div class="container">
+        </div>
+</body>
+</html>
